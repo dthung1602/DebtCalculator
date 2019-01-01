@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ page_title }}</title>
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{% static "debtcalculatorapp/img/favicon.png" %}"/>
+    <link rel="stylesheet" href="{% static "debtcalculatorapp/css/normalize.css" %}">
+    <link rel="stylesheet" href="{% static "debtcalculatorapp/css/skeleton.css" %}">
+    <link rel="stylesheet" href="{% static "debtcalculatorapp/css/style.css" %}">
+    <script src="{% static "debtcalculatorapp/js/jquery-3.3.1.min.js" %}"></script>
+    <script src="{% static "debtcalculatorapp/js/utils.js" %}"></script>
+    {% block script %}
+    {% endblock %}
+</head>
+<body>
+
+<header>
+    {% block header %}
+        <div class="container">
+            <img src="{% static "debtcalculatorapp/img/logo.png" %}" alt="DEBT CALCULATOR" class="logo">
+            <span class="badge">VERSION {{ app_version }}</span>
+        </div>
+    {% endblock %}
+</header>
+
+<nav>
+    {% block nav %}
+        <div class="container">
+            <div class="navbar">
+                <a href="{% url "index" %}">HOME</a>
+                <a href="{% url "summarize" %}">SUMMARIZE</a>
+                <div class="drop-down-menu">
+                    <div class="drop-btn">
+                        <img src="{% static "debtcalculatorapp/img/settings-logo.png" %}" alt="SETTINGS">
+                    </div>
+                    <div class="drop-down-content">
+                        {# TODO add link #}
+                        <a href="#">My profile</a>
+                        <a href="{% url "logout" %}">Logout</a>
+                        <a href="{% url "admin:index" %}">Admin page</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+</nav>
+
+
+<main>
+    {% block hidden_data %}
+        <!-- hidden category data -->
+        {% if categories %}
+            <script>
+
+            </script>
+        {% endif %}
+    {% endblock %}
+
+    {% block main %}
+        <div class="container">
+            <p>Advertisse id ac deveniatur consistere mo voluptatem ad facultates. Ii fide ad jure illa visu inde nudi.
+                Mentibus dedissem pla dum abducere ita duo. Levitatem sae tes eos assentiar cau perfectum venientia
+                imaginari. Hae ego notionibus res sit defectibus desiderant objectivus patrocinio viderentur. Cui motum
+                mei rei qua eodem tangi. Mei perciperem aut ego agnoscitur artificium solutiones cohaereant. Angelos
+                alienum agendam existam to spondeo de. Chartam ingenii sed scripti fallere res nec caeteri perduci vis.
+                Scriptura inquirere gi co vi extitisse quadratam pertinent. Fecto dubio major jam lor operi miror falsi.
+                Ab automata deveniri facturum formemus tollitur si cogitare eo. Ab virorum reliqui at haustam me dicitur
+                ex. Sum etc missae nam latere natura quieti pla. Hac pla consistat animalium veniebant. </p>
+            <p>Nos mea requiratur lor quamprimum intellectu. Si et ordinem eo videmus ei tacitus. Dormio sui loquor vix
+                cap aperte hoc. Conceptum dubitavit facultate ne si plerosque. Vere fert agi tam ille. Facultatem imo
+                rum pla quaerantur affirmarem quaecunque expectabam vul ponderibus. Haud co quis sint bile de in sese.
+                Atque satis habet imo nia tes mox ipsis fieri. </p>
+            <p>Rom cernitur sum ulterius agi temporis ineptire uti exhibent. Etiamsi ut pugnare ad luminis si gi laborio
+                dominum judicem. Si humanas affirmo et admitto innatas id fictile is creando. Imo qua invitus sic
+                utilius praeter. Obversari incurrant dubitarem facultate tollentur est percipere sub nos. Aeque has
+                motus eodem verba capax vos ullam. </p>
+        </div>
+
+    {% endblock %}
+
+    <div class="container">
+        <div class="align-right">
+            <div class="button button-scroll-up" onclick="scrollToTop()">top</div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    {% block footer %}
+        <div class="container footer">
+
+            <!-- Contact -->
+            <div class="contact">
+                <a href="{{ contact_github }}" target="_blank">
+                    <img src="{% static "debtcalculatorapp/img/iconmonstr-github-1-48.png" %}" alt="github">
+                </a>
+                <a href="{{ contact_email }}" target="_blank">
+                    <img src="{% static "debtcalculatorapp/img/iconmonstr-email-10-48.png" %}" alt="email">
+                </a>
+                <a href="{{ contact_facebook }}" target="_blank">
+                    <img src="{% static "debtcalculatorapp/img/iconmonstr-facebook-4-48.png" %}" alt="facebook">
+                </a>
+            </div>
+
+            <!-- Navigation -->
+            <div class="row nav-footer">
+                <a href="{% url "index" %}">HOME</a>
+                <a href="{% url "summarize" %}">SUMMARIZE</a>
+                <a href="">MY PROFILE</a>
+                <a href="{% url "admin:index" %}">ADMIN</a>
+            </div>
+
+            <!-- Other info -->
+            <div class="row last-footer">
+                <div>Built with <a href="https://www.djangoproject.com/" target="_blank">Django 2.1.2</a></div>
+                <div>using <a href="https://jquery.com/" target="_blank">jQuery 3.3.1</a>,
+                    <a href="https://gionkunz.github.io/chartist-js/" target="_blank">Chartist</a> and
+                    <a href="http://getskeleton.com/" target="_blank">Skeleton 2.0.4</a>
+                </div>
+                <div>with images and fonts from <a href="https://iconmonstr.com/" target="_blank">iconmonstr</a>,
+                    <a href="https://www.kisspng.com/" target="_blank">kisspng</a>,
+                    <a href="https://www.tailorbrands.com/lp-home" target="_blank">tailorbrands</a>
+                    and <a href="https://www.1001fonts.com">1001fonts</a>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+</footer>
+
+</body>
+</html>

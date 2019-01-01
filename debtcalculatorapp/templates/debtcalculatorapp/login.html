@@ -1,0 +1,104 @@
+{% extends "debtcalculatorapp/base.html" %}
+
+{% block script %}
+    {% load static %}
+    <script src="{% static "debtcalculatorapp/js/login.js" %}"></script>
+{% endblock %}
+
+{% block main %}
+    <br>
+    <div class="container">
+        <div class="row">
+            <!----- Login ----->
+            <div class="five columns box">
+                <div class="login-notice">
+                    {% if form.errors %}
+                        <p>Your username and password didn't match. Please try again.</p>
+                    {% endif %}
+
+                    {% if next %}
+                        {% if user.is_authenticated %}
+                            <p>Your account doesn't have access to this page.
+                                To proceed, please login with an account that has access.</p>
+                        {% else %}
+                            <p>Please login to see this page.</p>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <form method="post" action="{% url 'login' %}" class="login-form">
+                    {% csrf_token %}
+
+                    <div>
+                        <label for="id_username">Profile</label>
+                        <input type="text" name="username" autofocus required id="id_username">
+                    </div>
+                    <div>
+                        <label for="id_password">Password:</label>
+                        <input type="password" name="password" required id="id_password">
+                    </div>
+
+                    <br>
+                    <div>
+                        <input type="submit" value="login" class="button-primary"/>
+                        <input type="hidden" name="next" value="{{ next }}"/>
+                    </div>
+                </form>
+
+                <p class="align-right"><a href="{% url 'password_reset' %}">Lost password?</a></p>
+            </div>
+
+            <!----- SPace ----->
+{#            <div class="one columns">&nbsp;</div>#}
+
+            <!----- Register ----->
+            <div class="seven columns box">
+                <div class="login-notice">
+                    <p>Need a new profile? Register now!</p>
+                </div>
+                <form method="post" action="{% url 'register' %}" class="login-form">
+                    {% csrf_token %}
+
+                    <div>
+                        <label for="new_profile_name">Profile name</label>
+                        <input type="text" id="new_profile_name" name="new_profile_name" required>
+                    </div>
+                    <div>
+                        <label for="new_profile_password">Password</label>
+                        <input type="password" id="new_profile_password" name="new_profile_password" required>
+                    </div>
+                    <div>
+                        <label for="new_profile_re_password">Password</label>
+                        <input type="password" id="new_profile_re_password" name="new_profile_re_password" required>
+                    </div>
+                    <div>
+                        <label for="new_profile_base_currency">Base currency</label>
+                        <select id="new_profile_base_currency" name="new_profile_base_currency" required>
+                            {% for crc in currencies %}
+                                <option value="{{ crc.code }}">{{ crc.code }} - {{ crc.full_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <label>Members</label>
+                        <div id="member_list">
+                            <div class="member_list_row">
+                                <input type="text" id="new_profile_member_1" required>
+                                <span onclick="removeNewMember(1)">&#x2716;</span>
+                            </div>
+                        </div>
+                        <div class="align-right ">
+                            <div id="add_member_button" onclick="addNewMemberRow()">&#x271A;</div>
+                        </div>
+                    </div>
+
+                    <br><br>
+                    <div>
+                        <input type="submit" value="register" class="button-primary"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br><br>
+
+{% endblock %}

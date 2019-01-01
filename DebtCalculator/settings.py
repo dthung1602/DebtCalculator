@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'puanlq1%3*&d7#m%3ekg@cbk64lipo8*pyll@@o(l=
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -71,6 +69,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'DebtCalculator.wsgi.application'
 
+# SECURE_SSL_REDIRECT = True
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
@@ -78,14 +77,13 @@ WSGI_APPLICATION = 'DebtCalculator.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
-        'NAME': os.getenv('DB_NAME', 'deptcalculator'),
-        'USER': os.getenv('DB_USER', 'deptcalculatoruser'),
+        'NAME': os.getenv('DB_NAME', 'debtcalculator'),
+        'USER': os.getenv('DB_USER', 'debtcalculator_user'),
         'PASSWORD': os.getenv('DB_PASSWORD', 'one_two_three'),
         'HOST': os.getenv('DB_HOST', 'localhost'),
         'PORT': os.getenv('DB_PORT', '')
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -105,7 +103,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -119,7 +116,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
@@ -131,4 +127,14 @@ LOGIN_REDIRECT_URL = '/'
 
 LOGOUT_REDIRECT_URL = '/'
 
-LOGIN_URL = 'login'
+LOGIN_URL = '/login'
+
+########################################################################
+
+APP_VERSION = "1.0"
+
+CONTACT_GITHUB = 'https://github.com/' + os.getenv('CONTACT_GITHUB', 'someone')
+
+CONTACT_EMAIL = 'mailto:' + os.getenv('CONTACT_EMAIL', 'someone@somewhere')
+
+CONTACT_FACEBOOK = 'https://www.facebook.com/' + os.getenv('CONTACT_FACEBOOK', 'somebody')

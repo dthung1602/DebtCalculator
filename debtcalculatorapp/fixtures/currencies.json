@@ -1,1297 +1,1297 @@
 [
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 1,
     "fields": {
-      "name": "United Arab Emirates Dirham",
+      "full_name": "United Arab Emirates Dirham",
       "code": "AED"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 2,
     "fields": {
-      "name": "Afghanistan Afghani",
+      "full_name": "Afghanistan Afghani",
       "code": "AFN"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 3,
     "fields": {
-      "name": "Albania Lek",
+      "full_name": "Albania Lek",
       "code": "ALL"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 4,
     "fields": {
-      "name": "Armenia Dram",
+      "full_name": "Armenia Dram",
       "code": "AMD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 5,
     "fields": {
-      "name": "Netherlands Antilles Guilder",
+      "full_name": "Netherlands Antilles Guilder",
       "code": "ANG"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 6,
     "fields": {
-      "name": "Angola Kwanza",
+      "full_name": "Angola Kwanza",
       "code": "AOA"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 7,
     "fields": {
-      "name": "Argentina Peso",
+      "full_name": "Argentina Peso",
       "code": "ARS"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 8,
     "fields": {
-      "name": "Australia Dollar",
+      "full_name": "Australia Dollar",
       "code": "AUD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 9,
     "fields": {
-      "name": "Aruba Guilder",
+      "full_name": "Aruba Guilder",
       "code": "AWG"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 10,
     "fields": {
-      "name": "Azerbaijan Manat",
+      "full_name": "Azerbaijan Manat",
       "code": "AZN"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 11,
     "fields": {
-      "name": "Bosnia and Herzegovina Convertible Marka",
+      "full_name": "Bosnia & Herzegovina Convertible Marka",
       "code": "BAM"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 12,
     "fields": {
-      "name": "Barbados Dollar",
+      "full_name": "Barbados Dollar",
       "code": "BBD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 13,
     "fields": {
-      "name": "Bangladesh Taka",
+      "full_name": "Bangladesh Taka",
       "code": "BDT"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 14,
     "fields": {
-      "name": "Bulgaria Lev",
+      "full_name": "Bulgaria Lev",
       "code": "BGN"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 15,
     "fields": {
-      "name": "Bahrain Dinar",
+      "full_name": "Bahrain Dinar",
       "code": "BHD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 16,
     "fields": {
-      "name": "Burundi Franc",
+      "full_name": "Burundi Franc",
       "code": "BIF"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 17,
     "fields": {
-      "name": "Bermuda Dollar",
+      "full_name": "Bermuda Dollar",
       "code": "BMD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 18,
     "fields": {
-      "name": "Brunei Darussalam Dollar",
+      "full_name": "Brunei Darussalam Dollar",
       "code": "BND"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 19,
     "fields": {
-      "name": "Bolivia Bolíviano",
+      "full_name": "Bolivia Bolíviano",
       "code": "BOB"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 20,
     "fields": {
-      "name": "Brazil Real",
+      "full_name": "Brazil Real",
       "code": "BRL"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 21,
     "fields": {
-      "name": "Bahamas Dollar",
+      "full_name": "Bahamas Dollar",
       "code": "BSD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 22,
     "fields": {
-      "name": "Bhutan Ngultrum",
+      "full_name": "Bhutan Ngultrum",
       "code": "BTN"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 23,
     "fields": {
-      "name": "Botswana Pula",
+      "full_name": "Botswana Pula",
       "code": "BWP"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 24,
     "fields": {
-      "name": "Belarus Ruble",
+      "full_name": "Belarus Ruble",
       "code": "BYN"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 25,
     "fields": {
-      "name": "Belize Dollar",
+      "full_name": "Belize Dollar",
       "code": "BZD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 26,
     "fields": {
-      "name": "Canada Dollar",
+      "full_name": "Canada Dollar",
       "code": "CAD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 27,
     "fields": {
-      "name": "Congo/Kinshasa Franc",
+      "full_name": "Congo/Kinshasa Franc",
       "code": "CDF"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 28,
     "fields": {
-      "name": "Switzerland Franc",
+      "full_name": "Switzerland Franc",
       "code": "CHF"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 29,
     "fields": {
-      "name": "Chile Peso",
+      "full_name": "Chile Peso",
       "code": "CLP"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 30,
     "fields": {
-      "name": "China Yuan Renminbi",
+      "full_name": "China Yuan Renminbi",
       "code": "CNY"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 31,
     "fields": {
-      "name": "Colombia Peso",
+      "full_name": "Colombia Peso",
       "code": "COP"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 32,
     "fields": {
-      "name": "Costa Rica Colon",
+      "full_name": "Costa Rica Colon",
       "code": "CRC"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 33,
     "fields": {
-      "name": "Cuba Convertible Peso",
+      "full_name": "Cuba Convertible Peso",
       "code": "CUC"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 34,
     "fields": {
-      "name": "Cuba Peso",
+      "full_name": "Cuba Peso",
       "code": "CUP"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 35,
     "fields": {
-      "name": "Cape Verde Escudo",
+      "full_name": "Cape Verde Escudo",
       "code": "CVE"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 36,
     "fields": {
-      "name": "Czech Republic Koruna",
+      "full_name": "Czech Republic Koruna",
       "code": "CZK"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 37,
     "fields": {
-      "name": "Djibouti Franc",
+      "full_name": "Djibouti Franc",
       "code": "DJF"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 38,
     "fields": {
-      "name": "Denmark Krone",
+      "full_name": "Denmark Krone",
       "code": "DKK"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 39,
     "fields": {
-      "name": "Dominican Republic Peso",
+      "full_name": "Dominican Republic Peso",
       "code": "DOP"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 40,
     "fields": {
-      "name": "Algeria Dinar",
+      "full_name": "Algeria Dinar",
       "code": "DZD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 41,
     "fields": {
-      "name": "Egypt Pound",
+      "full_name": "Egypt Pound",
       "code": "EGP"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 42,
     "fields": {
-      "name": "Eritrea Nakfa",
+      "full_name": "Eritrea Nakfa",
       "code": "ERN"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 43,
     "fields": {
-      "name": "Ethiopia Birr",
+      "full_name": "Ethiopia Birr",
       "code": "ETB"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 44,
     "fields": {
-      "name": "Euro Member Countries",
+      "full_name": "Euro Member Countries",
       "code": "EUR"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 45,
     "fields": {
-      "name": "Fiji Dollar",
+      "full_name": "Fiji Dollar",
       "code": "FJD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 46,
     "fields": {
-      "name": "Falkland Islands (Malvinas) Pound",
+      "full_name": "Falkland Islands Pound",
       "code": "FKP"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 47,
     "fields": {
-      "name": "United Kingdom Pound",
+      "full_name": "United Kingdom Pound",
       "code": "GBP"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 48,
     "fields": {
-      "name": "Georgia Lari",
+      "full_name": "Georgia Lari",
       "code": "GEL"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 49,
     "fields": {
-      "name": "Guernsey Pound",
+      "full_name": "Guernsey Pound",
       "code": "GGP"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 50,
     "fields": {
-      "name": "Ghana Cedi",
+      "full_name": "Ghana Cedi",
       "code": "GHS"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 51,
     "fields": {
-      "name": "Gibraltar Pound",
+      "full_name": "Gibraltar Pound",
       "code": "GIP"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 52,
     "fields": {
-      "name": "Gambia Dalasi",
+      "full_name": "Gambia Dalasi",
       "code": "GMD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 53,
     "fields": {
-      "name": "Guinea Franc",
+      "full_name": "Guinea Franc",
       "code": "GNF"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 54,
     "fields": {
-      "name": "Guatemala Quetzal",
+      "full_name": "Guatemala Quetzal",
       "code": "GTQ"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 55,
     "fields": {
-      "name": "Guyana Dollar",
+      "full_name": "Guyana Dollar",
       "code": "GYD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 56,
     "fields": {
-      "name": "Hong Kong Dollar",
+      "full_name": "Hong Kong Dollar",
       "code": "HKD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 57,
     "fields": {
-      "name": "Honduras Lempira",
+      "full_name": "Honduras Lempira",
       "code": "HNL"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 58,
     "fields": {
-      "name": "Croatia Kuna",
+      "full_name": "Croatia Kuna",
       "code": "HRK"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 59,
     "fields": {
-      "name": "Haiti Gourde",
+      "full_name": "Haiti Gourde",
       "code": "HTG"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 60,
     "fields": {
-      "name": "Hungary Forint",
+      "full_name": "Hungary Forint",
       "code": "HUF"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 61,
     "fields": {
-      "name": "Indonesia Rupiah",
+      "full_name": "Indonesia Rupiah",
       "code": "IDR"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 62,
     "fields": {
-      "name": "Israel Shekel",
+      "full_name": "Israel Shekel",
       "code": "ILS"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 63,
     "fields": {
-      "name": "Isle of Man Pound",
+      "full_name": "Isle of Man Pound",
       "code": "IMP"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 64,
     "fields": {
-      "name": "India Rupee",
+      "full_name": "India Rupee",
       "code": "INR"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 65,
     "fields": {
-      "name": "Iraq Dinar",
+      "full_name": "Iraq Dinar",
       "code": "IQD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 66,
     "fields": {
-      "name": "Iran Rial",
+      "full_name": "Iran Rial",
       "code": "IRR"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 67,
     "fields": {
-      "name": "Iceland Krona",
+      "full_name": "Iceland Krona",
       "code": "ISK"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 68,
     "fields": {
-      "name": "Jersey Pound",
+      "full_name": "Jersey Pound",
       "code": "JEP"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 69,
     "fields": {
-      "name": "Jamaica Dollar",
+      "full_name": "Jamaica Dollar",
       "code": "JMD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 70,
     "fields": {
-      "name": "Jordan Dinar",
+      "full_name": "Jordan Dinar",
       "code": "JOD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 71,
     "fields": {
-      "name": "Japan Yen",
+      "full_name": "Japan Yen",
       "code": "JPY"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 72,
     "fields": {
-      "name": "Kenya Shilling",
+      "full_name": "Kenya Shilling",
       "code": "KES"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 73,
     "fields": {
-      "name": "Kyrgyzstan Som",
+      "full_name": "Kyrgyzstan Som",
       "code": "KGS"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 74,
     "fields": {
-      "name": "Cambodia Riel",
+      "full_name": "Cambodia Riel",
       "code": "KHR"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 75,
     "fields": {
-      "name": "Comorian Franc",
+      "full_name": "Comorian Franc",
       "code": "KMF"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 76,
     "fields": {
-      "name": "Korea (North) Won",
+      "full_name": "Korea (North) Won",
       "code": "KPW"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 77,
     "fields": {
-      "name": "Korea (South) Won",
+      "full_name": "Korea (South) Won",
       "code": "KRW"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 78,
     "fields": {
-      "name": "Kuwait Dinar",
+      "full_name": "Kuwait Dinar",
       "code": "KWD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 79,
     "fields": {
-      "name": "Cayman Islands Dollar",
+      "full_name": "Cayman Islands Dollar",
       "code": "KYD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 80,
     "fields": {
-      "name": "Kazakhstan Tenge",
+      "full_name": "Kazakhstan Tenge",
       "code": "KZT"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 81,
     "fields": {
-      "name": "Laos Kip",
+      "full_name": "Laos Kip",
       "code": "LAK"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 82,
     "fields": {
-      "name": "Lebanon Pound",
+      "full_name": "Lebanon Pound",
       "code": "LBP"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 83,
     "fields": {
-      "name": "Sri Lanka Rupee",
+      "full_name": "Sri Lanka Rupee",
       "code": "LKR"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 84,
     "fields": {
-      "name": "Liberia Dollar",
+      "full_name": "Liberia Dollar",
       "code": "LRD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 85,
     "fields": {
-      "name": "Lesotho Loti",
+      "full_name": "Lesotho Loti",
       "code": "LSL"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 86,
     "fields": {
-      "name": "Libya Dinar",
+      "full_name": "Libya Dinar",
       "code": "LYD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 87,
     "fields": {
-      "name": "Morocco Dirham",
+      "full_name": "Morocco Dirham",
       "code": "MAD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 88,
     "fields": {
-      "name": "Moldova Leu",
+      "full_name": "Moldova Leu",
       "code": "MDL"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 89,
     "fields": {
-      "name": "Madagascar Ariary",
+      "full_name": "Madagascar Ariary",
       "code": "MGA"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 90,
     "fields": {
-      "name": "Macedonia Denar",
+      "full_name": "Macedonia Denar",
       "code": "MKD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 91,
     "fields": {
-      "name": "Myanmar (Burma) Kyat",
+      "full_name": "Myanmar (Burma) Kyat",
       "code": "MMK"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 92,
     "fields": {
-      "name": "Mongolia Tughrik",
+      "full_name": "Mongolia Tughrik",
       "code": "MNT"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 93,
     "fields": {
-      "name": "Macau Pataca",
+      "full_name": "Macau Pataca",
       "code": "MOP"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 94,
     "fields": {
-      "name": "Mauritania Ouguiya",
+      "full_name": "Mauritania Ouguiya",
       "code": "MRU"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 95,
     "fields": {
-      "name": "Mauritius Rupee",
+      "full_name": "Mauritius Rupee",
       "code": "MUR"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 96,
     "fields": {
-      "name": "Maldives (Maldive Islands) Rufiyaa",
+      "full_name": "Maldives Rufiyaa",
       "code": "MVR"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 97,
     "fields": {
-      "name": "Malawi Kwacha",
+      "full_name": "Malawi Kwacha",
       "code": "MWK"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 98,
     "fields": {
-      "name": "Mexico Peso",
+      "full_name": "Mexico Peso",
       "code": "MXN"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 99,
     "fields": {
-      "name": "Malaysia Ringgit",
+      "full_name": "Malaysia Ringgit",
       "code": "MYR"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 100,
     "fields": {
-      "name": "Mozambique Metical",
+      "full_name": "Mozambique Metical",
       "code": "MZN"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 101,
     "fields": {
-      "name": "Namibia Dollar",
+      "full_name": "Namibia Dollar",
       "code": "NAD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 102,
     "fields": {
-      "name": "Nigeria Naira",
+      "full_name": "Nigeria Naira",
       "code": "NGN"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 103,
     "fields": {
-      "name": "Nicaragua Cordoba",
+      "full_name": "Nicaragua Cordoba",
       "code": "NIO"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 104,
     "fields": {
-      "name": "Norway Krone",
+      "full_name": "Norway Krone",
       "code": "NOK"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 105,
     "fields": {
-      "name": "Nepal Rupee",
+      "full_name": "Nepal Rupee",
       "code": "NPR"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 106,
     "fields": {
-      "name": "New Zealand Dollar",
+      "full_name": "New Zealand Dollar",
       "code": "NZD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 107,
     "fields": {
-      "name": "Oman Rial",
+      "full_name": "Oman Rial",
       "code": "OMR"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 108,
     "fields": {
-      "name": "Panama Balboa",
+      "full_name": "Panama Balboa",
       "code": "PAB"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 109,
     "fields": {
-      "name": "Peru Sol",
+      "full_name": "Peru Sol",
       "code": "PEN"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 110,
     "fields": {
-      "name": "Papua New Guinea Kina",
+      "full_name": "Papua New Guinea Kina",
       "code": "PGK"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 111,
     "fields": {
-      "name": "Philippines Peso",
+      "full_name": "Philippines Peso",
       "code": "PHP"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 112,
     "fields": {
-      "name": "Pakistan Rupee",
+      "full_name": "Pakistan Rupee",
       "code": "PKR"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 113,
     "fields": {
-      "name": "Poland Zloty",
+      "full_name": "Poland Zloty",
       "code": "PLN"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 114,
     "fields": {
-      "name": "Paraguay Guarani",
+      "full_name": "Paraguay Guarani",
       "code": "PYG"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 115,
     "fields": {
-      "name": "Qatar Riyal",
+      "full_name": "Qatar Riyal",
       "code": "QAR"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 116,
     "fields": {
-      "name": "Romania Leu",
+      "full_name": "Romania Leu",
       "code": "RON"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 117,
     "fields": {
-      "name": "Serbia Dinar",
+      "full_name": "Serbia Dinar",
       "code": "RSD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 118,
     "fields": {
-      "name": "Russia Ruble",
+      "full_name": "Russia Ruble",
       "code": "RUB"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 119,
     "fields": {
-      "name": "Rwanda Franc",
+      "full_name": "Rwanda Franc",
       "code": "RWF"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 120,
     "fields": {
-      "name": "Saudi Arabia Riyal",
+      "full_name": "Saudi Arabia Riyal",
       "code": "SAR"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 121,
     "fields": {
-      "name": "Solomon Islands Dollar",
+      "full_name": "Solomon Islands Dollar",
       "code": "SBD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 122,
     "fields": {
-      "name": "Seychelles Rupee",
+      "full_name": "Seychelles Rupee",
       "code": "SCR"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 123,
     "fields": {
-      "name": "Sudan Pound",
+      "full_name": "Sudan Pound",
       "code": "SDG"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 124,
     "fields": {
-      "name": "Sweden Krona",
+      "full_name": "Sweden Krona",
       "code": "SEK"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 125,
     "fields": {
-      "name": "Singapore Dollar",
+      "full_name": "Singapore Dollar",
       "code": "SGD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 126,
     "fields": {
-      "name": "Saint Helena Pound",
+      "full_name": "Saint Helena Pound",
       "code": "SHP"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 127,
     "fields": {
-      "name": "Sierra Leone Leone",
+      "full_name": "Sierra Leone Leone",
       "code": "SLL"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 128,
     "fields": {
-      "name": "Somalia Shilling",
+      "full_name": "Somalia Shilling",
       "code": "SOS"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 129,
     "fields": {
-      "name": "Seborga Luigino",
+      "full_name": "Seborga Luigino",
       "code": "SPL"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 130,
     "fields": {
-      "name": "Suriname Dollar",
+      "full_name": "Surifull_name Dollar",
       "code": "SRD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 131,
     "fields": {
-      "name": "São Tomé and Príncipe Dobra",
+      "full_name": "São Tomé & Príncipe Dobra",
       "code": "STN"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 132,
     "fields": {
-      "name": "El Salvador Colon",
+      "full_name": "El Salvador Colon",
       "code": "SVC"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 133,
     "fields": {
-      "name": "Syria Pound",
+      "full_name": "Syria Pound",
       "code": "SYP"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 134,
     "fields": {
-      "name": "eSwatini Lilangeni",
+      "full_name": "eSwatini Lilangeni",
       "code": "SZL"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 135,
     "fields": {
-      "name": "Thailand Baht",
+      "full_name": "Thailand Baht",
       "code": "THB"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 136,
     "fields": {
-      "name": "Tajikistan Somoni",
+      "full_name": "Tajikistan Somoni",
       "code": "TJS"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 137,
     "fields": {
-      "name": "Turkmenistan Manat",
+      "full_name": "Turkmenistan Manat",
       "code": "TMT"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 138,
     "fields": {
-      "name": "Tunisia Dinar",
+      "full_name": "Tunisia Dinar",
       "code": "TND"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 139,
     "fields": {
-      "name": "Tonga Pa'anga",
+      "full_name": "Tonga Pa'anga",
       "code": "TOP"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 140,
     "fields": {
-      "name": "Turkey Lira",
+      "full_name": "Turkey Lira",
       "code": "TRY"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 141,
     "fields": {
-      "name": "Trinidad and Tobago Dollar",
+      "full_name": "Trinidad & Tobago Dollar",
       "code": "TTD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 142,
     "fields": {
-      "name": "Tuvalu Dollar",
+      "full_name": "Tuvalu Dollar",
       "code": "TVD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 143,
     "fields": {
-      "name": "Taiwan New Dollar",
+      "full_name": "Taiwan New Dollar",
       "code": "TWD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 144,
     "fields": {
-      "name": "Tanzania Shilling",
+      "full_name": "Tanzania Shilling",
       "code": "TZS"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 145,
     "fields": {
-      "name": "Ukraine Hryvnia",
+      "full_name": "Ukraine Hryvnia",
       "code": "UAH"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 146,
     "fields": {
-      "name": "Uganda Shilling",
+      "full_name": "Uganda Shilling",
       "code": "UGX"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 147,
     "fields": {
-      "name": "United States Dollar",
+      "full_name": "United States Dollar",
       "code": "USD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 148,
     "fields": {
-      "name": "Uruguay Peso",
+      "full_name": "Uruguay Peso",
       "code": "UYU"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 149,
     "fields": {
-      "name": "Uzbekistan Som",
+      "full_name": "Uzbekistan Som",
       "code": "UZS"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 150,
     "fields": {
-      "name": "Venezuela Bolívar",
+      "full_name": "Venezuela Bolívar",
       "code": "VEF"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 151,
     "fields": {
-      "name": "Viet Nam Dong ",
+      "full_name": "Viet Nam Dong ",
       "code": "VND"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 152,
     "fields": {
-      "name": "Vanuatu Vatu",
+      "full_name": "Vanuatu Vatu",
       "code": "VUV"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 153,
     "fields": {
-      "name": "Samoa Tala",
+      "full_name": "Samoa Tala",
       "code": "WST"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 154,
     "fields": {
-      "name": "Communauté Financière Africaine(BEAC) CFA Franc    BEAC",
+      "full_name": "BEAC CFA Franc",
       "code": "XAF"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 155,
     "fields": {
-      "name": "East Caribbean Dollar",
+      "full_name": "East Caribbean Dollar",
       "code": "XCD"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 156,
     "fields": {
-      "name": "International Monetary Fund(IMF) Special Drawing Rights",
+      "full_name": "IMF Special Drawing Rights",
       "code": "XDR"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 157,
     "fields": {
-      "name": "Communauté Financière Africaine(BCEAO)Franc",
+      "full_name": "BCEAO Franc",
       "code": "XOF"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 158,
     "fields": {
-      "name": "Comptoirs Français du Pacifique(CFP) Franc",
+      "full_name": "CFP Franc",
       "code": "XPF"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 159,
     "fields": {
-      "name": "Yemen Rial",
+      "full_name": "Yemen Rial",
       "code": "YER"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 160,
     "fields": {
-      "name": "South Africa Rand",
+      "full_name": "South Africa Rand",
       "code": "ZAR"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 161,
     "fields": {
-      "name": "Zambia Kwacha",
+      "full_name": "Zambia Kwacha",
       "code": "ZMW"
     }
   },
   {
-    "model": "debtcalculator.currency",
+    "model": "debtcalculatorapp.currency",
     "pk": 162,
     "fields": {
-      "name": "Zimbabwe Dollar",
+      "full_name": "Zimbabwe Dollar",
       "code": "ZWD"
     }
   }

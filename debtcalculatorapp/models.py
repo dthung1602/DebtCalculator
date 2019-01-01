@@ -2,11 +2,13 @@ from datetime import datetime
 
 from django.contrib.auth.models import User
 from django.db import models
+# from django.db.models.signals import post_save
+# from django.dispatch import receiver
 
 
 class Currency(models.Model):
     full_name = models.CharField(
-        max_length=50
+        max_length=100
     )
 
     code = models.CharField(
@@ -15,15 +17,10 @@ class Currency(models.Model):
     )
 
 
-class Entry(models.Model):
-    group = models.ForeignKey(
+class Profile(models.Model):
+    user = models.OneToOneField(
         User,
-        on_delete=models.PROTECT
-    )
-
-    name = models.CharField(
-        max_length=30,
-        unique=True
+        on_delete=models.CASCADE
     )
 
     start_date = models.DateTimeField(
@@ -32,6 +29,11 @@ class Entry(models.Model):
 
     end_date = models.DateTimeField(
         null=True
+    )
+
+    base_currency = models.ForeignKey(
+        Currency,
+        on_delete=models.PROTECT
     )
 
     @property
@@ -43,9 +45,37 @@ class Entry(models.Model):
         self.save()
 
 
-class Person(models.Model):
-    group = models.ForeignKey(
-        User,
+# @receiver(post_save, sender=User)
+# def create_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         Profile.objects.create(user=instance)
+#
+#
+# @receiver(post_save, sender=User)
+# def save_user_profile(sender, instance, **kwargs):
+#     instance.profile.save()
+
+
+class ExchangeRate(models.Model):
+    profile = models.ForeignKey(
+        Profile,
+        on_delete=models.CASCADE
+    )
+
+    secondary_currency = models.ForeignKey(
+        Currency,
+        on_delete=models.PROTECT
+    )
+
+    rate = models.DecimalField(
+        max_digits=18,
+        decimal_places=6
+    )
+
+
+class Member(models.Model):
+    profile = models.ForeignKey(
+        Profile,
         on_delete=models.PROTECT
     )
 
@@ -56,21 +86,21 @@ class Person(models.Model):
 
 
 class Payment(models.Model):
-    entry = models.ForeignKey(
-        Entry,
+    profile = models.ForeignKey(
+        Profile,
         on_delete=models.CASCADE
     )
 
     date_time = models.DateTimeField()
 
     lender = models.ForeignKey(
-        Person,
+        Member,
         on_delete=models.PROTECT,
         related_name='lender'
     )
 
     debtors = models.ManyToManyField(
-        Person,
+        Member,
         related_name='debtor'
     )
 
