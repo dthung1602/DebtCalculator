@@ -163,3 +163,13 @@ function getUrlParameter(sParam, defaultValue = undefined) {
 
     return defaultValue;
 }
+
+function evalArithmetic(str) {
+    try {
+        if (!str.match(/^[0-9 +\-*/().]+$/))
+            return NaN;
+        return eval(str).toFixed(2);
+    } catch (err) {
+       return NaN
+    }
+}

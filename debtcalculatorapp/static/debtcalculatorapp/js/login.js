@@ -17,13 +17,17 @@ function addNewMemberRow() {
 class User {
     constructor(data) {
         this.id = data.id;
-        this.name = data.name;
+        this.username = data.username;
         this.email = data.email;
         this.password1 = data.password1;
         this.password2 = data.password2;
         this.base_currency = data.base_currency;
         this.members = data.members;
 
+        this.fields = [
+            'id', 'name', 'email', 'password1',
+            'password2', 'base_currency', 'members'
+        ];
         this.errors = {};
         this.clean();
     }
@@ -55,8 +59,8 @@ class User {
         const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,20}$/;
         const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
-        // validate name
-        if (this.name === '')
+        // validate username
+        if (this.username === '')
             this.addError('name', 'Name cannot be empty');
 
         // validate email
@@ -80,16 +84,12 @@ class User {
     }
 
     getSubmitData() {
-        return {
-            csrfmiddlewaretoken: $('[name="csrfmiddlewaretoken"]').val(),
-            id: this.id,
-            username: this.name,
-            email: this.email,
-            password1: this.password1,
-            password2: this.password2,
-            base_currency: this.base_currency,
-            members: this.members,
-        }
+        let object = {
+            csrfmiddlewaretoken: $('[name="csrfmiddlewaretoken"]').val()
+        };
+        for (let field in this.fields)
+            object[field] = this[field];
+        return object;
     }
 }
 
@@ -99,7 +99,7 @@ function getNewUserData() {
         members.push($(this).find('input').val().trim());
     });
     return {
-        name: $('#new_profile_name').val(),
+        username: $('#new_profile_username').val(),
         email: $('#new_profile_email').val(),
         password1: $('#new_profile_password1').val(),
         password2: $('#new_profile_password2').val(),

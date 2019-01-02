@@ -1,0 +1,181 @@
+{% extends "debtcalculatorapp/base.html" %}
+
+{% block script %}
+    {% load static %}
+    <script src="{% static "debtcalculatorapp/js/index.js" %}"></script>
+{% endblock %}
+
+{% block main %}
+
+    <div class="container">
+
+        <!-- Clock and Balance -->
+        <div class="row">
+            <div class="seven columns box" id="clock"></div>
+            <div class="five columns box" id="info-box">
+                <div>{{ user.username }}</div>
+                <div>
+                    <span>Start date</span>
+                    <span>{{ user.profile.start_date }}</span>
+                </div>
+                <div>
+                    <span>End date</span>
+                    <span>
+                        {% if user.profile.end_date == None %}
+                            N/A
+                        {% else %}{
+                            { user.profile.end_date }}
+                        {% endif %}
+                    </span>
+                </div>
+                <div>
+                    <span>Base currency</span>
+                    <span>{{ user.profile.base_currency }}</span>
+                </div>
+                <div>
+                    <span>Members</span>
+                    <span>{{ members | length }}</span>
+                </div>
+            </div>
+            <script>startTime()</script>
+        </div>
+
+        <!-- payments in this week -->
+        <div class="row box">
+            <table class="twelve columns">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Lender</th>
+                    <th>Debtors</th>
+                    <th class="align-right">Total</th>
+                    <th class="align-right">Exchange fee</th>
+                    <th>Content</th>
+                </tr>
+                </thead>
+                <tbody id="entry-container">
+                {% for payment_page in payment_pages %}
+                    {% for payment in payment_page %}
+                        <tr class="table-page-{{ forloop.parentloop.counter }}">
+                            <td>{{ payment.formatted_date }}</td>
+                            <td>{{ payment.lender.name }}</td>
+                            <td class="align-right">{{ payment.total }} {{ payment.currency.code }}</td>
+                            <td class="align-right">{{ payment.exchange_fee }}</td>
+                            <td>{{ payment.content }}</td>
+                        </tr>
+                    {% endfor %}
+                {% empty %}
+                    <tr>
+                        <td class="no-data">No data to display</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- page control -->
+            {% if entries_pages|length > 1 %}
+                <div class="row">
+                    <div class="twelve columns group-btn page-control align-right">
+                        {% for ep in entries_pages %}
+                            <div class="button"
+                                 onclick="viewTablePage({{ forloop.counter }})">{{ forloop.counter }}</div>
+                        {% endfor %}
+                    </div>
+                    <script>viewTablePage(1)</script>
+                </div>
+            {% endif %}
+
+        </div>
+
+        <!-- Add new payment -->
+        <form class="box" id="new-payment">
+            {% csrf_token %}
+
+            <div class="row">
+                <!-- Date time -->
+                <div class="five columns">
+                    <label for="payment_date">Datetime</label>
+                    <input type="datetime-local" id="payment_date" placeholder="yyyy-mm-dd hh:mm"
+                           autocomplete="off">
+                    <div class="button" onclick="setNewPaymentDatetimeNow()">Now</div>
+                    <div id="payment_date_error" class="input-error"></div>
+                </div>
+
+                <!-- Content -->
+                <div class="seven columns">
+                    <label for="payment_content">Content</label>
+                    <input type="text" id="payment_content" placeholder="A carrot and an apple" maxlength="200">
+                    <div id="payment_content_error" class="input-error"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- lender -->
+                <div class="three columns">
+                    <label for="payment_lender">Lender</label>
+                    <select id="payment_lender">
+                        {% for member in members %}
+                            <option value="{{ member.id }}">{{ member.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <div id="payment_lender_error" class="input-error"></div>
+                </div>
+
+                <!-- debtor -->
+                <div class="nine columns">
+                    <label for="payment_debtor">Debtors</label>
+                    <div>
+                        <div class="debtor-group">
+                            <input id="select_all_debtors" type="checkbox" onchange="selectAll()">
+                            <span class="debtor-label"><i>All</i></span>
+                        </div>
+                        {% for member in members %}
+                            <div class="debtor-group">
+                                <input type="checkbox" name="payment_debtor" value="{{ member.id }}"
+                                       onclick="deselectAll(this)">
+                                <span class="debtor-label">{{ member.name }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div id="payment_value_error" class="input-error"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Total -->
+                <div class="six columns">
+                    <label for="payment_total">Total</label>
+                    <input type="text" id="payment_total" placeholder="1.25 + 2.3 * 5"
+                           pattern="^[0-9 \+\-\*\/\(\)\.]+$">
+                    <div id="payment_total_error" class="input-error"></div>
+                </div>
+
+                <!-- Currency -->
+                <div class="two columns">
+                    <label for="payment_currency">Currency</label>
+                    <select id="payment_currency">
+                        {% for crc in currencies %}
+                            <option value="{{ crc.id }}">{{ crc.code }}</option>
+                        {% endfor %}
+                    </select>
+                    <div id="payment_currency_error" class="input-error"></div>
+                </div>
+
+                <!-- Exchange fee -->
+                <div class="four columns">
+                    <label for="payment_exchange_fee">Exchange fees</label>
+                    <input type="text" id="payment_exchange_fee" placeholder="1.2 + 2.3"
+                           pattern="^[0-9 \+\-\*\/\(\)\.]+$">
+                    <div id="payment_exchange_fee_error" class="input-error"></div>
+                </div>
+            </div>
+
+            <!-- Submit and clear -->
+            <div class="row submit-row align-right">
+                <div class="button" onclick="clearNewPaymentFields()">CLEAR</div>
+                <div class="button button-primary" onclick="submitNewPaymentForm()">ADD</div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

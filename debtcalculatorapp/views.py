@@ -24,7 +24,23 @@ def render(request, template_name, context=None, content_type=None, status=None,
 
 @login_required
 def index(request):
-    return HttpResponse("index")
+    user = request.user
+    context = {
+        'user': user,
+        'currencies': Currency.objects.all(),
+        'members': Member.objects.filter(profile=user.profile)
+    }
+    return render(request, "debtcalculatorapp/index.html", context)
+
+
+@login_required
+def add(request):
+    user = request.user
+    context = {
+        'currencies': Currency.objects.all(),
+        'members': Member.objects.filter(profile=user.profile)
+    }
+    return render(request, "debtcalculatorapp/index.html", context)
 
 
 @login_required

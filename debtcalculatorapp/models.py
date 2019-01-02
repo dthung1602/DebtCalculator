@@ -141,3 +141,7 @@ class Payment(models.Model):
     def __str__(self):
         date = self.date_time.isoformat()[:10]
         return f"[{date}] {self.lender.name}: {self.content[:25]}"
+
+    @property
+    def formatted_date(self):
+        return self.date_time.strftime("%a %b %d, %I %p")

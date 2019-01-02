@@ -139,17 +139,37 @@ html {
 /* Info box */
 @font-face {
     font-family: 'digital-clock-font';
-    src: url('/static/debtcalculator/font/digital-7/digital-7-mono.ttf');
+    src: url('/static/debtcalculatorapp/font/digital-7/digital-7-mono.ttf');
 }
 
-.info {
+#clock {
     text-align: center;
     font-family: 'digital-clock-font', serif;
     font-size: xx-large;
 }
 
-.info > div > div:nth-child(2) {
+#clock div:last-child {
     font-size: 160%;
+}
+
+#info-box {
+    /*font-size: medium;*/
+}
+
+#info-box div:first-child {
+    text-align: center;
+    font-size: large;
+    text-transform: uppercase;
+    font-weight: bolder;
+    padding-bottom: 10px;
+}
+
+#info-box div span:first-child {
+    font-weight: bold;
+}
+
+#info-box div span:last-child {
+    float: right;
 }
 
 .success-panel {
@@ -371,7 +391,7 @@ html {
 
 .button-scroll-up:hover {
     color: white;
-    background:  #1a4e35;
+    background: #1a4e35;
     border: 1px solid rgba(125, 125, 125, 0.62);
 }
 
@@ -487,4 +507,14 @@ html {
 #register-button {
     margin-top: 25px;
     width: 100%;
+}
+
+.debtor-group {
+    display: inline-block;
+    margin: 2px 50px 3px 0;
+}
+
+.debtor-label {
+    padding: 3px;
+    margin: 0 0 3px 0;
 }
