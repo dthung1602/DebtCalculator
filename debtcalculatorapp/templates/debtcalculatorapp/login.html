@@ -47,34 +47,33 @@
                 <p class="align-right"><a href="{% url 'password_reset' %}">Lost password?</a></p>
             </div>
 
-            <!----- SPace ----->
-{#            <div class="one columns">&nbsp;</div>#}
-
             <!----- Register ----->
             <div class="seven columns box">
                 <div class="login-notice">
                     <p>Need a new profile? Register now!</p>
                 </div>
-                <form method="post" action="{% url 'register' %}" class="login-form">
-                    {% csrf_token %}
-
+                <form class="login-form">
                     <div>
                         <label for="new_profile_name">Profile name</label>
-                        <input type="text" id="new_profile_name" name="new_profile_name" required>
+                        <input type="text" id="new_profile_name" required>
                     </div>
                     <div>
-                        <label for="new_profile_password">Password</label>
-                        <input type="password" id="new_profile_password" name="new_profile_password" required>
+                        <label for="new_profile_email">Email</label>
+                        <input type="email" id="new_profile_email" required>
                     </div>
                     <div>
-                        <label for="new_profile_re_password">Password</label>
-                        <input type="password" id="new_profile_re_password" name="new_profile_re_password" required>
+                        <label for="new_profile_password1">Password</label>
+                        <input type="password" id="new_profile_password1" required>
+                    </div>
+                    <div>
+                        <label for="new_profile_password2">Confirm Password</label>
+                        <input type="password" id="new_profile_password2" required>
                     </div>
                     <div>
                         <label for="new_profile_base_currency">Base currency</label>
-                        <select id="new_profile_base_currency" name="new_profile_base_currency" required>
+                        <select id="new_profile_base_currency" required>
                             {% for crc in currencies %}
-                                <option value="{{ crc.code }}">{{ crc.code }} - {{ crc.full_name }}</option>
+                                <option value="{{ crc.id }}">{{ crc.code }} - {{ crc.full_name }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -90,12 +89,8 @@
                             <div id="add_member_button" onclick="addNewMemberRow()">&#x271A;</div>
                         </div>
                     </div>
-
-                    <br><br>
-                    <div>
-                        <input type="submit" value="register" class="button-primary"/>
-                    </div>
                 </form>
+                <button id="register-button" class="button-primary" onclick="submitRegisterForm()">REGISTER</button>
             </div>
         </div>
     </div>

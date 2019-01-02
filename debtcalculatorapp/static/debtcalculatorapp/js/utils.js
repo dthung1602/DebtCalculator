@@ -141,3 +141,25 @@ function viewTablePage(page) {
     $('.page-control .button').removeClass('selected');
     $('.page-control .button:nth-child(' + page + ')').addClass('selected');
 }
+
+
+function hasDuplicate(arr) {
+    return arr.length > (new Set(arr)).size;
+}
+
+function getUrlParameter(sParam, defaultValue = undefined) {
+    let sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+
+    return defaultValue;
+}

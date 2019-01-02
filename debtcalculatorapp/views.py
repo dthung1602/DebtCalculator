@@ -1,9 +1,11 @@
 from django.conf import settings
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
-from django.http.response import HttpResponse
+from django.db import transaction
+from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import render as rd
 
-from debtcalculatorapp.models import *
+from debtcalculatorapp.forms import *
 
 
 def render(request, template_name, context=None, content_type=None, status=None, using=None):
@@ -30,15 +32,48 @@ def summarize(request):
     return HttpResponse("Summarize")
 
 
-def login(request):
+def login_form(request):
     context = {
         'currencies': Currency.objects.all()
     }
     return render(request, "debtcalculatorapp/login.html", context)
 
 
+@transaction.atomic
 def register(request):
-    context = {
-        'currencies': Currency.objects.all()
-    }
-    return render(request, "debtcalculatorapp/login.html", context)
+    errors = {}
+    user_form = UserForm(request.POST)
+
+    if user_form.is_valid():
+        user = user_form.save()
+        profile_form = ProfileForm(request.POST)
+        if profile_form.is_valid():
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
+            user.profile = profile
+            user.save()
+            for member_name in request.POST.getlist('members[]'):
+                member_form = MemberForm({
+                    'name': member_name,
+                    'profile': profile
+                })
+                if member_form.is_valid():
+                    member = member_form.save(commit=False)
+                    member.profile = profile
+                    member.save()
+                else:
+                    errors.update(member_form.errors)
+                    break
+
+            username = user_form.cleaned_data['username']
+            password = user_form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return JsonResponse({}, status=200)
+        else:
+            errors.update(profile_form.errors)
+    else:
+        errors.update(user_form.errors)
+
+    return JsonResponse(errors, status=400)

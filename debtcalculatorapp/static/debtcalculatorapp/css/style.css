@@ -483,3 +483,8 @@ html {
     border: 1px solid #f08c0b;
     cursor: pointer;
 }
+
+#register-button {
+    margin-top: 25px;
+    width: 100%;
+}
