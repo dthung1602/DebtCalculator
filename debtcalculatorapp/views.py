@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import render as rd
-
+from math import ceil
 from debtcalculatorapp.forms import *
 
 
@@ -25,22 +25,34 @@ def render(request, template_name, context=None, content_type=None, status=None,
 @login_required
 def index(request):
     user = request.user
+    payment_pages = group_array(
+        Payment.objects.filter(profile=user.profile).order_by('-date_time'),
+        settings.PAGE_SIZE
+    )
     context = {
         'user': user,
         'currencies': Currency.objects.all(),
-        'members': Member.objects.filter(profile=user.profile)
+        'members': Member.objects.filter(profile=user.profile),
+        'payment_pages': payment_pages
     }
     return render(request, "debtcalculatorapp/index.html", context)
 
 
 @login_required
+@transaction.atomic
 def add(request):
-    user = request.user
-    context = {
-        'currencies': Currency.objects.all(),
-        'members': Member.objects.filter(profile=user.profile)
-    }
-    return render(request, "debtcalculatorapp/index.html", context)
+    payment_form = PaymentForm(request.POST)
+
+    if payment_form.is_valid():
+        payment = payment_form.save(commit=False)
+        debtors = validate_debtors(request)
+        if debtors:
+            payment.profile = request.user.profile
+            payment.save()
+            payment.debtors.set(debtors)
+            return JsonResponse({})
+    else:
+        return JsonResponse(payment_form.errors, status=400)
 
 
 @login_required
@@ -93,3 +105,26 @@ def register(request):
         errors.update(user_form.errors)
 
     return JsonResponse(errors, status=400)
+
+
+def validate_debtors(request):
+    debtor_ids = request.POST.getlist('debtors[]')
+    debtors = Member.objects.filter(id__in=debtor_ids).prefetch_related('profile')
+
+    if len(debtor_ids) > len(debtors) or len(debtor_ids) == 0:
+        return False
+
+    for debtor in debtors:
+        if debtor.profile.id != request.user.profile.id:
+            return False
+
+    return debtors
+
+
+def group_array(arr, group_size):
+    """Divide arr into groups with size at least group_size"""
+
+    arr = list(arr)
+    if group_size > 0:
+        return [arr[i * group_size:i * group_size + group_size] for i in range(ceil(len(arr) / group_size))]
+    return [arr]

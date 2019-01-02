@@ -130,7 +130,8 @@ class Payment(models.Model):
 
     exchange_fees = models.DecimalField(
         max_digits=16,
-        decimal_places=2
+        decimal_places=2,
+        null=True
     )
 
     content = models.TextField(
@@ -144,4 +145,8 @@ class Payment(models.Model):
 
     @property
     def formatted_date(self):
-        return self.date_time.strftime("%a %b %d, %I %p")
+        return self.date_time.strftime("%a, %b %d %H%p")
+
+    @property
+    def debtors_names(self):
+        return [debtor.name for debtor in self.debtors.all().order_by('name')]

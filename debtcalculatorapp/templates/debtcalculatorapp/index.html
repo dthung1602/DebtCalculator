@@ -22,7 +22,7 @@
                     <span>End date</span>
                     <span>
                         {% if user.profile.end_date == None %}
-                            N/A
+                            <i>n/a</i>
                         {% else %}{
                             { user.profile.end_date }}
                         {% endif %}
@@ -59,8 +59,13 @@
                         <tr class="table-page-{{ forloop.parentloop.counter }}">
                             <td>{{ payment.formatted_date }}</td>
                             <td>{{ payment.lender.name }}</td>
+                            <td>
+                                {% for name in payment.debtors_names %}
+                                    <span class="debtor-name">{{ name }}</span>
+                                {% endfor %}
+                            </td>
                             <td class="align-right">{{ payment.total }} {{ payment.currency.code }}</td>
-                            <td class="align-right">{{ payment.exchange_fee }}</td>
+                            <td class="align-right">{{ payment.exchange_fees }}</td>
                             <td>{{ payment.content }}</td>
                         </tr>
                     {% endfor %}
@@ -125,19 +130,17 @@
                 <div class="nine columns">
                     <label for="payment_debtor">Debtors</label>
                     <div>
-                        <div class="debtor-group">
-                            <input id="select_all_debtors" type="checkbox" onchange="selectAll()">
-                            <span class="debtor-label"><i>All</i></span>
+                        <div id="select_all_debtors" class="debtor-label" onclick="selectAll()">
+                            All
                         </div>
                         {% for member in members %}
-                            <div class="debtor-group">
-                                <input type="checkbox" name="payment_debtor" value="{{ member.id }}"
-                                       onclick="deselectAll(this)">
-                                <span class="debtor-label">{{ member.name }}</span>
+                            <div class="debtor-label" onclick="deselectAll(this)">
+                                <input type="hidden" name="payment_debtor" value="{{ member.id }}">
+                                {{ member.name }}
                             </div>
                         {% endfor %}
                     </div>
-                    <div id="payment_value_error" class="input-error"></div>
+                    <div id="payment_debtor_error" class="input-error"></div>
                 </div>
             </div>
 
@@ -163,10 +166,10 @@
 
                 <!-- Exchange fee -->
                 <div class="four columns">
-                    <label for="payment_exchange_fee">Exchange fees</label>
-                    <input type="text" id="payment_exchange_fee" placeholder="1.2 + 2.3"
+                    <label for="payment_exchange_fees">Exchange fees</label>
+                    <input type="text" id="payment_exchange_fees" placeholder="1.2 + 2.3"
                            pattern="^[0-9 \+\-\*\/\(\)\.]+$">
-                    <div id="payment_exchange_fee_error" class="input-error"></div>
+                    <div id="payment_exchange_fees_error" class="input-error"></div>
                 </div>
             </div>
 

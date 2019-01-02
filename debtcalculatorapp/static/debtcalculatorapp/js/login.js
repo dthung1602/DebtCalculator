@@ -25,7 +25,7 @@ class User {
         this.members = data.members;
 
         this.fields = [
-            'id', 'name', 'email', 'password1',
+            'id', 'username', 'email', 'password1',
             'password2', 'base_currency', 'members'
         ];
         this.errors = {};
@@ -87,8 +87,8 @@ class User {
         let object = {
             csrfmiddlewaretoken: $('[name="csrfmiddlewaretoken"]').val()
         };
-        for (let field in this.fields)
-            object[field] = this[field];
+        for (let i = 0; i < this.fields.length; i++)
+            object[this.fields[i]] = this[this.fields[i]];
         return object;
     }
 }
@@ -113,9 +113,7 @@ function registerSucceed() {
 }
 
 function registerFail(res, status, error) {
-    alert(res);
-    alert(status);
-    alert(error);
+    alert(status + error + JSON.stringify(res));
 }
 
 function submitRegisterForm() {

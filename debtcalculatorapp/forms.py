@@ -30,4 +30,5 @@ class ProfileForm(ModelForm):
 class PaymentForm(ModelForm):
     class Meta:
         model = Payment
-        fields = ['profile', 'date_time', 'lender', 'debtors', 'total', 'currency']
+        # https://stackoverflow.com/questions/54013009/django-cant-validate-multi-value-field-sent-by-jquery
+        fields = ['date_time', 'content', 'lender', 'total', 'currency', 'exchange_fees']

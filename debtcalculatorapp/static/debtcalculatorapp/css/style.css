@@ -509,12 +509,25 @@ html {
     width: 100%;
 }
 
-.debtor-group {
+.debtor-label {
+    cursor: pointer;
+    background: rgba(255, 209, 6, 0.57);
+    border-radius: 15px;
     display: inline-block;
-    margin: 2px 50px 3px 0;
+    margin: 5px;
+    padding: 3px 10px;
 }
 
-.debtor-label {
-    padding: 3px;
-    margin: 0 0 3px 0;
+.debtor-label.selected {
+    background: #17a536;
+    color: white;
+}
+
+.debtor-name {
+    font-size: small;
+    background: rgba(255, 209, 6, 0.19);
+    border-radius: 6px;
+    display: inline-block;
+    margin: 1px;
+    padding: 2px 3px;
 }

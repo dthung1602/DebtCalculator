@@ -37,22 +37,33 @@ function setNewPaymentDatetimeNow() {
 }
 
 function selectAll() {
-    let checked = $('#select_all_debtors').prop('checked');
-    let count = $('[name="payment_debtor"]').prop('checked', checked).length;
-    deselectAll.count = checked ? count : 0;
+    let allLabel = $('#select_all_debtors').toggleClass('selected');
+    let selected = allLabel.hasClass('selected');
+    let labels = $('#new-payment .debtor-label');
+    if (selected)
+        labels.addClass('selected');
+    else
+        labels.removeClass('selected');
+    let count = labels.length - 1;
+    deselectAll.count = selected ? count : 0;
     deselectAll.countMax = count;
 }
 
-function deselectAll(checkbox) {
+function deselectAll(obj) {
     if (deselectAll.countMax === undefined) {
         deselectAll.count = 0;
-        deselectAll.countMax = $('[name="payment_debtor"]').length;
+        deselectAll.countMax = $('#new-payment .debtor-label').length - 1;
     }
-    if (checkbox.checked)
+    let label = $(obj);
+    label.toggleClass('selected');
+    if (label.hasClass('selected'))
         deselectAll.count++;
     else
         deselectAll.count--;
-    $('#select_all_debtors').prop('checked', deselectAll.count === deselectAll.countMax);
+    if (deselectAll.count === deselectAll.countMax)
+        $('#select_all_debtors').addClass('selected');
+    else
+        $('#select_all_debtors').removeClass('selected');
 }
 
 class Payment {
@@ -64,11 +75,11 @@ class Payment {
         this.debtors = data.debtors;
         this.total = data.total;
         this.currency = data.currency;
-        this.exchange_fee = data.exchange_fee;
+        this.exchange_fees = data.exchange_fees;
 
         this.fields = [
             'id', 'date_time', 'content', 'lender',
-            'debtors', 'total', 'currency', 'exchange_fee'
+            'debtors', 'total', 'currency', 'exchange_fees'
         ];
         this.errors = {};
         this.clean()
@@ -121,12 +132,12 @@ class Payment {
         else
             this.total = total;
 
-        // validate exchange_fee
-        let exchange_fee = evalArithmetic(this.exchange_fee);
+        // validate exchange_fees
+        let exchange_fee = evalArithmetic(this.exchange_fees);
         if (isNaN(exchange_fee))
-            this.addError('exchange_fee', 'Invalid arithmetic expression');
+            this.addError('exchange_fees', 'Invalid arithmetic expression');
         else
-            this.exchange_fee = exchange_fee;
+            this.exchange_fees = exchange_fee;
 
         // validate currency
         if (this.currency === null)
@@ -137,8 +148,8 @@ class Payment {
         let object = {
             csrfmiddlewaretoken: $('[name="csrfmiddlewaretoken"]').val()
         };
-        for (let field in this.fields)
-            object[field] = this[field];
+        for (let i = 0; i < this.fields.length; i++)
+            object[this.fields[i]] = this[this.fields[i]];
         return object;
     }
 }
@@ -147,12 +158,11 @@ function clearNewPaymentFields() {
     $('#payment_date').val('');
     $('#payment_content').val('');
     $('#payment_lender').val('');
-    $('#select_all_debtors').prop('checked', false);
-    $('[name="payment_debtor"]').prop('checked', false);
+    $('#new-payment .debtor-label').removeClass('selected');
     deselectAll.count = 0;
     $('#payment_total').val('');
     $('#payment_currency').val('');
-    $('#payment_exchange_fee').val('');
+    $('#payment_exchange_fees').val('');
 }
 
 function addNewPaymentSucceed() {
@@ -160,24 +170,22 @@ function addNewPaymentSucceed() {
 }
 
 function addNewPaymentFail(res, status, error) {
-    alert(res);
-    alert(status);
-    alert(error);
+    alert(status + error + JSON.stringify(res));
 }
 
 function getNewPaymentData() {
-    let members = [];
-    $('[name="payment_debtor"]:checked').each(function () {
-            members.push(this.value.trim())
+    let debtors = [];
+    $('.debtor-label.selected').children().each(function () {
+        debtors.push(this.value.trim())
     });
     return {
-        date_time: $('#payment_date').val(),
+        date_time: $('#payment_date').val().replace('T', ' '),
         content: $('#payment_content').val().trim(),
         lender: $('#payment_lender').val(),
         total: $('#payment_total').val().trim(),
         currency: $('#payment_currency').val(),
-        exchange_fee: $('#payment_exchange_fee').val().trim(),
-        members: members
+        exchange_fees: $('#payment_exchange_fees').val().trim(),
+        debtors: debtors
     }
 }
 
@@ -188,7 +196,7 @@ function submitNewPaymentForm() {
         $.ajax({
             url: '/add/',
             type: 'POST',
-            dataType: 'json',
+            // dataType: 'json',
             data: payment.getSubmitData(),
             success: addNewPaymentSucceed,
             error: addNewPaymentFail
