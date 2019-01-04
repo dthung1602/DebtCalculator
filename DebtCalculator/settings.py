@@ -139,4 +139,4 @@ CONTACT_EMAIL = 'mailto:' + os.getenv('CONTACT_EMAIL', 'someone@somewhere')
 
 CONTACT_FACEBOOK = 'https://www.facebook.com/' + os.getenv('CONTACT_FACEBOOK', 'somebody')
 
-PAGE_SIZE = 10
+PAGE_SIZE = 5

@@ -78,10 +78,10 @@
             </table>
 
             <!-- page control -->
-            {% if entries_pages|length > 1 %}
+            {% if payment_pages|length > 1 %}
                 <div class="row">
                     <div class="twelve columns group-btn page-control align-right">
-                        {% for ep in entries_pages %}
+                        {% for pp in payment_pages %}
                             <div class="button"
                                  onclick="viewTablePage({{ forloop.counter }})">{{ forloop.counter }}</div>
                         {% endfor %}

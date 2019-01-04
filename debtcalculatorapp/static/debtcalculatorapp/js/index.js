@@ -196,7 +196,7 @@ function submitNewPaymentForm() {
         $.ajax({
             url: '/add/',
             type: 'POST',
-            // dataType: 'json',
+            dataType: 'json',
             data: payment.getSubmitData(),
             success: addNewPaymentSucceed,
             error: addNewPaymentFail

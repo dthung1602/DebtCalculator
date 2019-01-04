@@ -1,0 +1,110 @@
+{% extends "debtcalculatorapp/base.html" %}
+
+{% block script %}
+    {% load static %}
+    <script src="{% static "debtcalculatorapp/js/summarize.js" %}"></script>
+{% endblock %}
+
+{% block main %}
+
+    <div class="container">
+
+        <div class="row">
+            <!--- Left pane --->
+            <div class="seven columns box" id="summarize-result">
+                <div>PAYMENT</div>
+                <div class="align-right">
+                    {% for member in members %}
+                        <span class="debtor-label"
+                              onclick="selectMember({{ member.id }}, this)">{{ member.name }}</span>
+                    {% endfor %}
+                </div>
+                <br><br>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Pay to</th>
+                        <th>Amount ({{ user.profile.base_currency }})</th>
+                        <th>Reason</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr id="no-data-note">
+                        <td class="no-data">Select a member to view info</td>
+                    </tr>
+                    {% for member_payment in member_payments %}
+                        {% if member_payment.total > 0 %}
+                            <tr class="summarize-member-{{ member_payment.debtor.id }}">
+                                <td> {{ member_payment.lender.name }}</td>
+                                <td>{{ member_payment.total | floatformat:2 }}</td>
+                                <td>
+                                    {% for reason in member_payment.reasons %}
+                                        {{ reason }};<br>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% empty %}
+                        <tr>
+                            <td class="no-data">No data to display</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <script>
+                    $('[class^="summarize-member-"]').hide();
+                </script>
+            </div>
+
+            <!--- Right pane --->
+            <div class="five columns box" id="summarize-box">
+                <div>{{ user.username }}</div>
+                <div>
+                    <span>Start date</span>
+                    <span>{{ user.profile.start_date }}</span>
+                </div>
+                <div>
+                    <span>End date</span>
+                    <span>
+                        {% if user.profile.end_date == None %}
+                            <i>n/a</i>
+                        {% else %}{
+                            { user.profile.end_date }}
+                        {% endif %}
+                    </span>
+                </div>
+                <div>
+                    <span>Members</span>
+                    <div class="align-right" id="member-box">
+                        {% for member in members %}
+                            <span class="debtor-name">{{ member.name }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div>
+                    <span>Base currency</span>
+                    <span>{{ user.profile.base_currency }}</span>
+                </div>
+                <div>
+                    <span>Exchange rates</span>
+                    <div class="currency-rows align-center">
+                        {% csrf_token %}
+                        {% for exchange_rate in exchange_rates %}
+                            <div class="currency-row">
+                                1 {{ user.profile.base_currency }} =
+                                <input id="exchange_rate_{{ exchange_rate.id }}" type="number"
+                                       value="{{ exchange_rate.rate|floatformat:2 }}" required>
+                                {{ exchange_rate.secondary_currency }}
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+                <div class="align-right">
+                    <button class="button-primary" onclick="summarize()">SUMMARIZE</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

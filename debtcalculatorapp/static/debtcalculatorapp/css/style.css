@@ -152,10 +152,6 @@ html {
     font-size: 160%;
 }
 
-#info-box {
-    /*font-size: medium;*/
-}
-
 #info-box div:first-child {
     text-align: center;
     font-size: large;
@@ -172,13 +168,6 @@ html {
     float: right;
 }
 
-.success-panel {
-    background: #92e2a0;
-    color: green;
-    padding: 25px;
-    margin: 25px 0;
-    border-radius: 10px;
-}
 
 /*******************************
  *           UTILS             *
@@ -206,101 +195,6 @@ html {
 
 .align-center {
     text-align: center;
-}
-
-/*******************************
- *      SELECT CATEGORY        *
- *******************************/
-
-.select-btn {
-    height: 38px;
-    width: 205px;
-    padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
-    background-color: #fff;
-    border: 1px solid #D1D1D1;
-    border-radius: 4px;
-    box-shadow: none;
-    box-sizing: border-box;
-}
-
-.select-btn span:last-child {
-    float: right;
-}
-
-.select {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 15px;
-}
-
-.select-content {
-    display: none;
-    position: absolute;
-    background-color: #fdfdfd;
-    min-width: 205px;
-    overflow: auto;
-    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}
-
-.select-content .category {
-    color: #464646;
-    padding-left: 20px;
-    text-decoration: none;
-    display: block;
-    cursor: pointer;
-    padding-bottom: 2px;
-    padding-top: 2px;
-}
-
-.select-content .category.leaf {
-    color: black;
-    font-style: italic;
-}
-
-.select-content .category:hover {
-    background-color: #ebebeb;
-}
-
-.select-content .category.leaf:hover {
-    background: #69bf5e;
-    color: white;
-}
-
-.show {
-    display: block;
-}
-
-.clickable {
-    cursor: pointer;
-}
-
-.level-1 {
-    padding-left: 5px;
-}
-
-.level-2 {
-    padding-left: 25px;
-}
-
-.level-3 {
-    padding-left: 45px;
-}
-
-.level-4 {
-    padding-left: 65px;
-}
-
-.level-5 {
-    padding-left: 80px;
-}
-
-.level-6 {
-    padding-left: 100px;
-}
-
-.level-7 {
-    padding-left: 120px;
 }
 
 /*******************************
@@ -354,7 +248,8 @@ html {
 }
 
 .group-btn .selected {
-    background: #d8d8d8;
+    background: #007816;
+    color: white;
 }
 
 .group-btn .button:first-child,
@@ -511,7 +406,9 @@ html {
 
 .debtor-label {
     cursor: pointer;
-    background: rgba(255, 209, 6, 0.57);
+    background: white;
+    color: #007816;
+    border: 1px solid #007816;
     border-radius: 15px;
     display: inline-block;
     margin: 5px;
@@ -519,8 +416,9 @@ html {
 }
 
 .debtor-label.selected {
-    background: #17a536;
+    background: #007816;
     color: white;
+    border: 1px solid white;
 }
 
 .debtor-name {
@@ -530,4 +428,45 @@ html {
     display: inline-block;
     margin: 1px;
     padding: 2px 3px;
+}
+
+#summarize-result > div,
+#summarize-box > div {
+    margin-top: 13px;
+}
+
+#summarize-result > div:first-child,
+#summarize-box > div:first-child {
+    text-align: right;
+    font-size: large;
+    text-transform: uppercase;
+    font-weight: bolder;
+    padding-bottom: 10px;
+}
+
+#summarize-box > div > span:first-child {
+    font-weight: bold;
+}
+
+#summarize-box > div > span:not(:first-child) {
+    float: right;
+}
+
+#member-box {
+    text-align: right;
+    width: 75%;
+    margin-left: 25%;
+}
+
+.currency-rows {
+    margin-top: 15px;
+    margin-bottom: 50px;
+}
+
+.currency-row input {
+    width: 100px;
+}
+
+#summarize-result table {
+    width: 100%;
 }

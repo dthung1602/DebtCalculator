@@ -1,25 +1,14 @@
+from math import ceil
+
 from django.conf import settings
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
-from django.http.response import HttpResponse, JsonResponse
+from django.db.models import Count
+from django.http.response import JsonResponse
 from django.shortcuts import render as rd
-from math import ceil
+
 from debtcalculatorapp.forms import *
-
-
-def render(request, template_name, context=None, content_type=None, status=None, using=None):
-    """Override render function to add information to context for base.html"""
-
-    if context is None:
-        context = {}
-    context['now'] = datetime.now()
-    context['app_version'] = settings.APP_VERSION
-    context['contact_email'] = settings.CONTACT_EMAIL
-    context['contact_github'] = settings.CONTACT_GITHUB
-    context['contact_facebook'] = settings.CONTACT_FACEBOOK
-
-    return rd(request, template_name, context, content_type, status, using)
 
 
 @login_required
@@ -42,14 +31,23 @@ def index(request):
 @transaction.atomic
 def add(request):
     payment_form = PaymentForm(request.POST)
+    profile = request.user.profile
 
     if payment_form.is_valid():
         payment = payment_form.save(commit=False)
         debtors = validate_debtors(request)
         if debtors:
-            payment.profile = request.user.profile
+            payment.profile = profile
             payment.save()
             payment.debtors.set(debtors)
+            exchange_rate = payment.currency.exchangerate_set.filter(profile=profile)
+            if len(exchange_rate) == 0 and payment.currency != profile.base_currency:
+                exchange_rate = ExchangeRate(
+                    profile=profile,
+                    secondary_currency=payment.currency,
+                    rate=1
+                )
+                exchange_rate.save()
             return JsonResponse({})
     else:
         return JsonResponse(payment_form.errors, status=400)
@@ -57,7 +55,41 @@ def add(request):
 
 @login_required
 def summarize(request):
-    return HttpResponse("Summarize")
+    user = request.user
+    exchange_rates = ExchangeRate.objects \
+        .filter(profile=user.profile) \
+        .prefetch_related('secondary_currency')
+
+    members = user.profile.member_set.all()
+    member_payments = []
+
+    for debtor in members:
+        for lender in members:
+            if debtor.id != lender.id:
+                member_payments.append(
+                    MemberPayment(debtor, lender, exchange_rates)
+                )
+
+    context = {
+        'user': user,
+        'exchange_rates': exchange_rates,
+        'members': members,
+        'member_payments': member_payments
+    }
+    return render(request, "debtcalculatorapp/summarize.html", context)
+
+
+@login_required
+def edit_exchange_rate(request):
+    post = request.POST.copy()
+    del post['csrfmiddlewaretoken']
+
+    exchange_rates = ExchangeRate.objects.filter(id__in=post.keys())
+    for exchange_rate in exchange_rates:
+        exchange_rate.rate = post[str(exchange_rate.id)]
+        exchange_rate.save()
+
+    return JsonResponse({})
 
 
 def login_form(request):
@@ -107,6 +139,20 @@ def register(request):
     return JsonResponse(errors, status=400)
 
 
+def render(request, template_name, context=None, content_type=None, status=None, using=None):
+    """Override render function to add information to context for base.html"""
+
+    if context is None:
+        context = {}
+    context['now'] = datetime.now()
+    context['app_version'] = settings.APP_VERSION
+    context['contact_email'] = settings.CONTACT_EMAIL
+    context['contact_github'] = settings.CONTACT_GITHUB
+    context['contact_facebook'] = settings.CONTACT_FACEBOOK
+
+    return rd(request, template_name, context, content_type, status, using)
+
+
 def validate_debtors(request):
     debtor_ids = request.POST.getlist('debtors[]')
     debtors = Member.objects.filter(id__in=debtor_ids).prefetch_related('profile')
@@ -128,3 +174,28 @@ def group_array(arr, group_size):
     if group_size > 0:
         return [arr[i * group_size:i * group_size + group_size] for i in range(ceil(len(arr) / group_size))]
     return [arr]
+
+
+class MemberPayment:
+    def __init__(self, debtor: Member, lender: Member, all_exchange_rates):
+        self.debtor = debtor
+        self.lender = lender
+        self.total = 0
+        self.reasons = []
+
+        payments = Payment.objects \
+            .annotate(num_debtors=Count('debtors')) \
+            .filter(lender=lender, debtors=debtor)
+
+        exchange_rates = []
+        for payment in payments:
+            for er in all_exchange_rates:
+                if er.id == payment.currency_id:
+                    exchange_rates.append(er)
+                    break
+
+        for payment, exchange_rate in zip(payments, exchange_rates):
+            t = payment.total * exchange_rate.rate + payment.exchange_fees
+            self.total += t / payment.num_debtors
+            date = payment.date_time.strftime('%m/%d ')
+            self.reasons.append(date + payment.content)
