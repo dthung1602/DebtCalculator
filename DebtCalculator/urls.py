@@ -21,6 +21,7 @@ from debtcalculatorapp.views import *
 urlpatterns = [
     path('', index, name='index'),
     path('add/', add, name='add'),
+    path('edit_exchange_fees/', edit_exchange_fees, name='edit_exchange_fees'),
 
     path('summarize/', summarize, name='summarize'),
     path('edit_exchange_rate/', edit_exchange_rate, name='edit_exchange_rate'),

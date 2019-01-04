@@ -19,22 +19,17 @@
                     <span>{{ user.profile.start_date }}</span>
                 </div>
                 <div>
-                    <span>End date</span>
-                    <span>
-                        {% if user.profile.end_date == None %}
-                            <i>n/a</i>
-                        {% else %}{
-                            { user.profile.end_date }}
-                        {% endif %}
-                    </span>
-                </div>
-                <div>
                     <span>Base currency</span>
                     <span>{{ user.profile.base_currency }}</span>
                 </div>
                 <div>
                     <span>Members</span>
-                    <span>{{ members | length }}</span>
+                    <div class="align-right" id="member-box">
+                        <span></span>
+                        {% for member in members %}
+                            <span class="debtor-name">{{ member.name }}</span>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
             <script>startTime()</script>
@@ -65,7 +60,10 @@
                                 {% endfor %}
                             </td>
                             <td class="align-right">{{ payment.total }} {{ payment.currency.code }}</td>
-                            <td class="align-right">{{ payment.exchange_fees }}</td>
+                            <td class="align-right exchange-fee" id="exchange-rate-{{ payment.id }}">
+                                <span onclick="editExchangeFee(this, {{ payment.id }})"
+                                      title="Click to edit">{{ payment.exchange_fees }}</span>
+                            </td>
                             <td>{{ payment.content }}</td>
                         </tr>
                     {% endfor %}
@@ -166,7 +164,7 @@
 
                 <!-- Exchange fee -->
                 <div class="four columns">
-                    <label for="payment_exchange_fees">Exchange fees</label>
+                    <label for="payment_exchange_fees">Exchange fees ({{ user.profile.base_currency }})</label>
                     <input type="text" id="payment_exchange_fees" placeholder="1.2 + 2.3"
                            pattern="^[0-9 \+\-\*\/\(\)\.]+$">
                     <div id="payment_exchange_fees_error" class="input-error"></div>

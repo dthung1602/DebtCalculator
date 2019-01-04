@@ -165,11 +165,11 @@ function clearNewPaymentFields() {
     $('#payment_exchange_fees').val('');
 }
 
-function addNewPaymentSucceed() {
+function reload() {
     location.reload();
 }
 
-function addNewPaymentFail(res, status, error) {
+function displayErrors(res, status, error) {
     alert(status + error + JSON.stringify(res));
 }
 
@@ -198,10 +198,49 @@ function submitNewPaymentForm() {
             type: 'POST',
             dataType: 'json',
             data: payment.getSubmitData(),
-            success: addNewPaymentSucceed,
-            error: addNewPaymentFail
+            success: reload,
+            error: displayErrors
         });
     } else {
         alert(JSON.stringify(payment.errors))
     }
+}
+
+function editExchangeFee(container, id) {
+    let value = container.innerText;
+    container.onclick = function () {
+        return false
+    };
+    $(container)
+        .html('')
+        .append(
+            $('<input type="number" id="exchange-rate-input-' + id + '">')
+                .val(value))
+        .append(
+            $('<img src="/static/debtcalculatorapp/img/upload.png" onclick="submitEditExchangeFees(' + id + ')" alt="save">'));
+
+}
+
+
+function submitEditExchangeFees(id) {
+    let value = $('#exchange-rate-input-' + id).val();
+    if (isNaN(parseFloat(value))) {
+        alert('Invalid exchange fee');
+        return;
+    }
+
+    let data = {
+        csrfmiddlewaretoken: $('[name="csrfmiddlewaretoken"]').val(),
+        id: id,
+        value: value
+    };
+
+    $.ajax({
+        url: '/edit_exchange_fees/',
+        type: 'POST',
+        dataType: 'json',
+        data: data,
+        success: reload,
+        error: displayErrors
+    });
 }

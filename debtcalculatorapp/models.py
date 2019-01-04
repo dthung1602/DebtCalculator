@@ -1,11 +1,5 @@
-from datetime import datetime
-
 from django.contrib.auth.models import User
 from django.db import models
-
-
-# from django.db.models.signals import post_save
-# from django.dispatch import receiver
 
 
 class Currency(models.Model):
@@ -34,33 +28,10 @@ class Profile(models.Model):
         auto_now_add=True
     )
 
-    end_date = models.DateTimeField(
-        null=True
-    )
-
     base_currency = models.ForeignKey(
         Currency,
         on_delete=models.PROTECT
     )
-
-    @property
-    def has_ended(self):
-        return self.end_date is None
-
-    def end_now(self):
-        self.end_date = datetime.now()
-        self.save()
-
-
-# @receiver(post_save, sender=User)
-# def create_user_profile(sender, instance, created, **kwargs):
-#     if created:
-#         Profile.objects.create(user=instance)
-#
-#
-# @receiver(post_save, sender=User)
-# def save_user_profile(sender, instance, **kwargs):
-#     instance.profile.save()
 
 
 class ExchangeRate(models.Model):
@@ -80,7 +51,7 @@ class ExchangeRate(models.Model):
     )
 
     def __str__(self):
-        return f"1 {self.profile.base_currency.code} = {self.rate} {self.secondary_currency.code}"
+        return f"{self.profile.base_currency.code} = {self.rate} {self.secondary_currency.code}"
 
 
 class Member(models.Model):
@@ -141,7 +112,7 @@ class Payment(models.Model):
 
     def __str__(self):
         date = self.date_time.isoformat()[:10]
-        return f"[{date}] {self.lender.name}: {self.content[:25]}"
+        return f"[{date}] {self.lender.name}: {self.content[:20]}"
 
     @property
     def formatted_date(self):

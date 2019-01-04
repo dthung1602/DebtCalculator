@@ -153,7 +153,7 @@ html {
 }
 
 #info-box div:first-child {
-    text-align: center;
+    text-align: right;
     font-size: large;
     text-transform: uppercase;
     font-weight: bolder;
@@ -373,6 +373,13 @@ html {
 /*******************************
  *         NEW PROFILE         *
  *******************************/
+.login-box-header {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: large;
+    text-align: right;
+    margin: 10px 5px 30px 0;
+}
 
 .member_list_row input {
     width: 92%;
@@ -391,8 +398,6 @@ html {
     display: inline-block;
     background-color: #f0a814;
     text-align: center;
-    /*width: 10%;*/
-    /*height: 15px;*/
     padding: 6px;
     border-radius: 3px;
     border: 1px solid #f08c0b;
@@ -469,4 +474,31 @@ html {
 
 #summarize-result table {
     width: 100%;
+}
+
+.exchange-fee {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.exchange-fee span {
+    white-space: nowrap;
+}
+
+.exchange-fee:hover {
+    color: #0d992b;
+}
+
+.exchange-fee input {
+    color: black;
+    width: 100px;
+}
+
+.exchange-fee img {
+    display: inline;
+    width: 25px;
+    height: 25px;
+    position: relative;
+    top: 7px;
+    left: 7px;
 }

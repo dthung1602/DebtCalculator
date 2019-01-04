@@ -54,6 +54,17 @@ def add(request):
 
 
 @login_required
+@transaction.atomic
+def edit_exchange_fees(request):
+    payment_id = request.POST['id']
+    payment = Payment.objects.get(pk=payment_id)
+    payment.exchange_fees = request.POST['value']
+    payment.save()
+
+    return JsonResponse({})
+
+
+@login_required
 def summarize(request):
     user = request.user
     exchange_rates = ExchangeRate.objects \
@@ -66,9 +77,9 @@ def summarize(request):
     for debtor in members:
         for lender in members:
             if debtor.id != lender.id:
-                member_payments.append(
-                    MemberPayment(debtor, lender, exchange_rates)
-                )
+                member_payment = MemberPayment(debtor, lender, exchange_rates)
+                if member_payment.total > 0:
+                    member_payments.append(member_payment)
 
     context = {
         'user': user,
@@ -107,12 +118,14 @@ def register(request):
     if user_form.is_valid():
         user = user_form.save()
         profile_form = ProfileForm(request.POST)
+
         if profile_form.is_valid():
             profile = profile_form.save(commit=False)
             profile.user = user
             profile.save()
             user.profile = profile
             user.save()
+
             for member_name in request.POST.getlist('members[]'):
                 member_form = MemberForm({
                     'name': member_name,
@@ -126,11 +139,12 @@ def register(request):
                     errors.update(member_form.errors)
                     break
 
-            username = user_form.cleaned_data['username']
-            password = user_form.cleaned_data['password1']
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return JsonResponse({}, status=200)
+            if not errors:
+                username = user_form.cleaned_data['username']
+                password = user_form.cleaned_data['password1']
+                user = authenticate(username=username, password=password)
+                login(request, user)
+                return JsonResponse({}, status=200)
         else:
             errors.update(profile_form.errors)
     else:
@@ -144,7 +158,6 @@ def render(request, template_name, context=None, content_type=None, status=None,
 
     if context is None:
         context = {}
-    context['now'] = datetime.now()
     context['app_version'] = settings.APP_VERSION
     context['contact_email'] = settings.CONTACT_EMAIL
     context['contact_github'] = settings.CONTACT_GITHUB
@@ -180,7 +193,7 @@ class MemberPayment:
     def __init__(self, debtor: Member, lender: Member, all_exchange_rates):
         self.debtor = debtor
         self.lender = lender
-        self.total = 0
+        self.total = 0.0
         self.reasons = []
 
         payments = Payment.objects \
@@ -190,12 +203,12 @@ class MemberPayment:
         exchange_rates = []
         for payment in payments:
             for er in all_exchange_rates:
-                if er.id == payment.currency_id:
+                if er.secondary_currency_id == payment.currency_id:
                     exchange_rates.append(er)
                     break
 
         for payment, exchange_rate in zip(payments, exchange_rates):
-            t = payment.total * exchange_rate.rate + payment.exchange_fees
-            self.total += t / payment.num_debtors
+            t = payment.total / exchange_rate.rate + payment.exchange_fees
+            self.total += float(t / payment.num_debtors)
             date = payment.date_time.strftime('%m/%d ')
             self.reasons.append(date + payment.content)
