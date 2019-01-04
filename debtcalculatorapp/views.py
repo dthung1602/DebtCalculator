@@ -11,6 +11,8 @@ from django.shortcuts import render as rd
 from debtcalculatorapp.forms import *
 
 
+# TODO superuser do not access home, summarize
+
 @login_required
 def index(request):
     user = request.user
@@ -19,6 +21,7 @@ def index(request):
         settings.PAGE_SIZE
     )
     context = {
+        'page_title': "Home - " + user.username,
         'user': user,
         'currencies': Currency.objects.all(),
         'members': Member.objects.filter(profile=user.profile),
@@ -71,17 +74,18 @@ def summarize(request):
         .filter(profile=user.profile) \
         .prefetch_related('secondary_currency')
 
-    members = user.profile.member_set.all()
+    members = user.profile.member_set.all().order_by('name')
     member_payments = []
 
     for debtor in members:
         for lender in members:
             if debtor.id != lender.id:
-                member_payment = MemberPayment(debtor, lender, exchange_rates)
+                member_payment = MemberPayment(debtor, lender, exchange_rates, user.profile.base_currency_id)
                 if member_payment.total > 0:
                     member_payments.append(member_payment)
 
     context = {
+        'page_title': "Summarize - " + user.username,
         'user': user,
         'exchange_rates': exchange_rates,
         'members': members,
@@ -105,6 +109,7 @@ def edit_exchange_rate(request):
 
 def login_form(request):
     context = {
+        'page_title': "DebtCalculator - Login",
         'currencies': Currency.objects.all()
     }
     return render(request, "debtcalculatorapp/login.html", context)
@@ -126,12 +131,14 @@ def register(request):
             user.profile = profile
             user.save()
 
+            #  TODO unique name within a profile
             for member_name in request.POST.getlist('members[]'):
                 member_form = MemberForm({
                     'name': member_name,
                     'profile': profile
                 })
                 if member_form.is_valid():
+                    # TODO if fail -> do not create user + profile
                     member = member_form.save(commit=False)
                     member.profile = profile
                     member.save()
@@ -190,7 +197,7 @@ def group_array(arr, group_size):
 
 
 class MemberPayment:
-    def __init__(self, debtor: Member, lender: Member, all_exchange_rates):
+    def __init__(self, debtor: Member, lender: Member, all_exchange_rates, base_currency_id):
         self.debtor = debtor
         self.lender = lender
         self.total = 0.0
@@ -198,17 +205,25 @@ class MemberPayment:
 
         payments = Payment.objects \
             .annotate(num_debtors=Count('debtors')) \
-            .filter(lender=lender, debtors=debtor)
+            .filter(lender=lender, debtors=debtor) \
+            .order_by('date_time')
 
         exchange_rates = []
         for payment in payments:
-            for er in all_exchange_rates:
-                if er.secondary_currency_id == payment.currency_id:
-                    exchange_rates.append(er)
-                    break
+            if payment.currency_id == base_currency_id:
+                exchange_rates.append(DummyExchangeRate())
+            else:
+                for er in all_exchange_rates:
+                    if er.secondary_currency_id == payment.currency_id:
+                        exchange_rates.append(er)
+                        break
 
         for payment, exchange_rate in zip(payments, exchange_rates):
             t = payment.total / exchange_rate.rate + payment.exchange_fees
             self.total += float(t / payment.num_debtors)
             date = payment.date_time.strftime('%m/%d ')
             self.reasons.append(date + payment.content)
+
+
+class DummyExchangeRate:
+    rate = 1
