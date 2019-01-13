@@ -68,6 +68,16 @@
                     </div>
                 </div>
                 <div>
+                    <span>Note</span>
+                    <div class="align-right note">
+                        <textarea id="note" autocomplete="off" placeholder="Add note here">
+                            {% if user.profile.note %}
+                                {{ user.profile.note }}
+                            {% endif %}
+                        </textarea>
+                    </div>
+                </div>
+                <div>
                     <span>Base currency</span>
                     <span>{{ user.profile.base_currency }}</span>
                 </div>

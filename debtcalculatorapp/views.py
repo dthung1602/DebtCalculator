@@ -6,16 +6,26 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.db.models import Count
 from django.http.response import JsonResponse
+from django.shortcuts import redirect, reverse
 from django.shortcuts import render as rd
 
 from debtcalculatorapp.forms import *
 
 
-# TODO superuser do not access home, summarize
+def redirect_superuser(func):
+    def new_func(request, *args, **kwargs):
+        if request.user.is_superuser:
+            return redirect('admin:index')
+        return func(request, *args, **kwargs)
+
+    return new_func
+
 
 @login_required
+@redirect_superuser
 def index(request):
     user = request.user
+
     payment_pages = group_array(
         Payment.objects.filter(profile=user.profile).order_by('-date_time'),
         settings.PAGE_SIZE
@@ -24,15 +34,19 @@ def index(request):
         'page_title': "Home - " + user.username,
         'user': user,
         'currencies': Currency.objects.all(),
-        'members': Member.objects.filter(profile=user.profile),
+        'members': Member.objects.filter(profile=user.profile).order_by('name'),
         'payment_pages': payment_pages
     }
     return render(request, "debtcalculatorapp/index.html", context)
 
 
 @login_required
+@redirect_superuser
 @transaction.atomic
 def add(request):
+    if request.user.is_superuser:
+        return redirect(reverse('admin'))
+
     payment_form = PaymentForm(request.POST)
     profile = request.user.profile
 
@@ -57,6 +71,7 @@ def add(request):
 
 
 @login_required
+@redirect_superuser
 @transaction.atomic
 def edit_exchange_fees(request):
     payment_id = request.POST['id']
@@ -68,6 +83,7 @@ def edit_exchange_fees(request):
 
 
 @login_required
+@redirect_superuser
 def summarize(request):
     user = request.user
     exchange_rates = ExchangeRate.objects \
@@ -95,8 +111,16 @@ def summarize(request):
 
 
 @login_required
+@redirect_superuser
+@transaction.atomic
 def edit_exchange_rate(request):
     post = request.POST.copy()
+
+    profile = request.user.profile
+    profile.note = post['note']
+    profile.save()
+
+    del post['note']
     del post['csrfmiddlewaretoken']
 
     exchange_rates = ExchangeRate.objects.filter(id__in=post.keys())
@@ -221,7 +245,7 @@ class MemberPayment:
         for payment, exchange_rate in zip(payments, exchange_rates):
             t = payment.total / exchange_rate.rate + payment.exchange_fees
             self.total += float(t / payment.num_debtors)
-            date = payment.date_time.strftime('%m/%d ')
+            date = payment.date_time.strftime('%d/%m ')
             self.reasons.append(date + payment.content)
 
 

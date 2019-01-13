@@ -7,15 +7,17 @@ function changeExchangeRateFail(res, status, error) {
 }
 
 function summarize() {
-    let exchangeRates = {
-        csrfmiddlewaretoken: $('[name="csrfmiddlewaretoken"]').val()
+    let data = {
+        csrfmiddlewaretoken: $('[name="csrfmiddlewaretoken"]').val(),
+        note: $('#note').val().trim()
     };
+
     $('[id^="exchange_rate_"]').each(
         function (i) {
             if (isNaN(parseInt(this.value)))
                 alert("Invalid exchange rate num " + (i + 1));
             else
-                exchangeRates[this.id.substring(14)] = this.value;
+                data[this.id.substring(14)] = this.value;
         }
     );
 
@@ -23,7 +25,7 @@ function summarize() {
         url: '/edit_exchange_rate/',
         type: 'POST',
         dataType: 'json',
-        data: exchangeRates,
+        data: data,
         success: changeExchangeRateSucceed,
         error: changeExchangeRateFail
     });

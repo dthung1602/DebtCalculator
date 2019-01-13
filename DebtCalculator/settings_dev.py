@@ -131,7 +131,7 @@ LOGIN_URL = '/login'
 
 ########################################################################
 
-APP_VERSION = "1.0"
+APP_VERSION = "DEV"
 
 CONTACT_GITHUB = 'https://github.com/' + os.getenv('CONTACT_GITHUB', 'someone')
 
@@ -139,4 +139,4 @@ CONTACT_EMAIL = 'mailto:' + os.getenv('CONTACT_EMAIL', 'someone@somewhere')
 
 CONTACT_FACEBOOK = 'https://www.facebook.com/' + os.getenv('CONTACT_FACEBOOK', 'somebody')
 
-PAGE_SIZE = 5
+PAGE_SIZE = 7

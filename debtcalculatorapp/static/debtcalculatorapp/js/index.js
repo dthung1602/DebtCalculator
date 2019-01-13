@@ -244,3 +244,12 @@ function submitEditExchangeFees(id) {
         error: displayErrors
     });
 }
+
+function changeCurrency(selectElement) {
+    if ($('#base-currency').text() === $(selectElement).find(':selected').text()) {
+        $('#exchange-fee').hide();
+        $('#payment_exchange_fees').val('0');
+    } else {
+        $('#exchange-fee').show();
+    }
+}

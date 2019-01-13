@@ -20,7 +20,7 @@
                 </div>
                 <div>
                     <span>Base currency</span>
-                    <span>{{ user.profile.base_currency }}</span>
+                    <span id="base-currency">{{ user.profile.base_currency }}</span>
                 </div>
                 <div>
                     <span>Members</span>
@@ -30,6 +30,15 @@
                             <span class="debtor-name">{{ member.name }}</span>
                         {% endfor %}
                     </div>
+                </div>
+                <div>
+                    <span>Note</span>
+                    {% if user.profile.note and user.profile.note != "" %}
+                        <pre>{{ user.profile.note }}</pre>
+                    {% else %}
+                        <br>
+                        <span class="no-data">Nothing to display</span>
+                    {% endif %}
                 </div>
             </div>
             <script>startTime()</script>
@@ -154,21 +163,29 @@
                 <!-- Currency -->
                 <div class="two columns">
                     <label for="payment_currency">Currency</label>
-                    <select id="payment_currency">
+                    <select id="payment_currency" onchange="changeCurrency(this)" autocomplete="off">
                         {% for crc in currencies %}
-                            <option value="{{ crc.id }}">{{ crc.code }}</option>
+                            {% if crc.code == user.profile.base_currency.code %}
+                                <option value="{{ crc.id }}" selected>{{ crc.code }}</option>
+                            {% else %}
+                                <option value="{{ crc.id }}">{{ crc.code }}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
                     <div id="payment_currency_error" class="input-error"></div>
                 </div>
 
                 <!-- Exchange fee -->
-                <div class="four columns">
+                <div class="four columns" id="exchange-fee">
                     <label for="payment_exchange_fees">Exchange fees ({{ user.profile.base_currency }})</label>
                     <input type="text" id="payment_exchange_fees" placeholder="1.2 + 2.3"
-                           pattern="^[0-9 \+\-\*\/\(\)\.]+$">
+                           pattern="^[0-9 \+\-\*\/\(\)\.]+$" autocomplete="off">
                     <div id="payment_exchange_fees_error" class="input-error"></div>
                 </div>
+                <script>
+                    $('#exchange-fee').hide();
+                    $('#payment_exchange_fees').val('0');
+                </script>
             </div>
 
             <!-- Submit and clear -->

@@ -18,15 +18,16 @@ class User {
     constructor(data) {
         this.id = data.id;
         this.username = data.username;
-        this.email = data.email;
+        // this.email = data.email;
         this.password1 = data.password1;
         this.password2 = data.password2;
         this.base_currency = data.base_currency;
         this.members = data.members;
 
         this.fields = [
-            'id', 'username', 'email', 'password1',
-            'password2', 'base_currency', 'members'
+            'id', 'username',
+            // 'email',
+            'password1', 'password2', 'base_currency', 'members'
         ];
         this.errors = {};
         this.clean();
@@ -57,15 +58,15 @@ class User {
 
     clean() {
         const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,20}$/;
-        const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+        // const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
         // validate username
         if (this.username === '')
             this.addError('name', 'Name cannot be empty');
 
         // validate email
-        if (!this.email.match(emailRegex))
-            this.addError('email', 'Invalid email')
+        // if (!this.email.match(emailRegex))
+        //     this.addError('email', 'Invalid email')
 
         // validate password
         if (this.password1 !== this.password2)
@@ -100,7 +101,7 @@ function getNewUserData() {
     });
     return {
         username: $('#new_profile_username').val(),
-        email: $('#new_profile_email').val(),
+        // email: $('#new_profile_email').val(),
         password1: $('#new_profile_password1').val(),
         password2: $('#new_profile_password2').val(),
         base_currency: $('#new_profile_base_currency').val(),

@@ -20,10 +20,7 @@ The environment must provide the following variable:
 
 import os
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 ######################################
@@ -128,7 +125,7 @@ LOGIN_URL = '/login'
 #             APP CONFIG             #
 ######################################
 
-APP_VERSION = "1.0"
+APP_VERSION = "1.1"
 
 CONTACT_GITHUB = 'https://github.com/' + os.environ.get('CONTACT_GITHUB')
 
@@ -136,7 +133,7 @@ CONTACT_EMAIL = 'mailto:' + os.environ.get('CONTACT_EMAIL')
 
 CONTACT_FACEBOOK = 'https://www.facebook.com/' + os.environ.get('CONTACT_FACEBOOK')
 
-PAGE_SIZE = 5
+PAGE_SIZE = 7
 
 ######################################
 #     HEROKU DEPLOYMENT CONFIG       #

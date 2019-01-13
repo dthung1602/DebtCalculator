@@ -33,6 +33,13 @@ class Profile(models.Model):
         on_delete=models.PROTECT
     )
 
+    note = models.TextField(
+        null=True,
+    )
+
+    def __str__(self):
+        return self.user.username
+
 
 class ExchangeRate(models.Model):
     profile = models.ForeignKey(
@@ -112,7 +119,7 @@ class Payment(models.Model):
 
     def __str__(self):
         date = self.date_time.isoformat()[:10]
-        return f"[{date}] {self.lender.name}: {self.content[:20]}"
+        return f"[{date}] {self.lender.name}: {self.content}"
 
     @property
     def formatted_date(self):

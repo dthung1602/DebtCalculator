@@ -502,3 +502,23 @@ html {
     top: 7px;
     left: 7px;
 }
+
+.note textarea {
+    width: 80%;
+    height: 200px;
+    resize: none;
+}
+
+#info-box pre,
+#info-box .note {
+    padding-left: 30px;
+    font-size: small;
+    white-space: pre-line;
+    font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.guide {
+    font-size: small;
+    color: grey;
+    font-style: italic;
+}

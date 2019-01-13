@@ -14,7 +14,7 @@
                 <div class="login-box-header">LOGIN</div>
                 <div class="login-notice">
                     {% if form.errors %}
-                        <p>Your username and password didn't match. Please try again.</p>
+                        <p>Your group name and password didn't match. Please try again.</p>
                     {% endif %}
 
                     {% if next %}
@@ -30,7 +30,7 @@
                     {% csrf_token %}
 
                     <div>
-                        <label for="id_username">Profile</label>
+                        <label for="id_username">Group name</label>
                         <input type="text" name="username" autofocus required id="id_username">
                     </div>
                     <div>
@@ -53,13 +53,14 @@
                 <div class="login-box-header">REGISTER</div>
                 <form class="login-form">
                     <div>
-                        <label for="new_profile_username">Profile name</label>
+                        <label for="new_profile_username">Group name</label>
+                        <span class="guide">Share this group name along with password to other members in your group</span>
                         <input type="text" id="new_profile_username" required>
                     </div>
-                    <div>
-                        <label for="new_profile_email">Email</label>
-                        <input type="email" id="new_profile_email" required>
-                    </div>
+{#                    <div>#}
+{#                        <label for="new_profile_email">Email</label>#}
+{#                        <input type="email" id="new_profile_email" required>#}
+{#                    </div>#}
                     <div>
                         <label for="new_profile_password1">Password</label>
                         <input type="password" id="new_profile_password1" required>
@@ -70,6 +71,7 @@
                     </div>
                     <div>
                         <label for="new_profile_base_currency">Base currency</label>
+                        <span class="guide">All other currencies will be converted to this currency when summarizing</span>
                         <select id="new_profile_base_currency" required>
                             {% for crc in currencies %}
                                 <option value="{{ crc.id }}">{{ crc.code }} - {{ crc.full_name }}</option>
@@ -78,6 +80,7 @@
                     </div>
                     <div>
                         <label>Members</label>
+                        <span class="guide">Names of members. Must be unique</span>
                         <div id="member_list">
                             <div class="member_list_row">
                                 <input type="text" id="new_profile_member_1" required>
